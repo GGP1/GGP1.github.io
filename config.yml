@@ -1,4 +1,4 @@
-baseURL: "https://ggp1.github.io/blog/"
+baseURL: "https://ggp1.github.io/"
 title: Gastón Palomeque
 paginate: 5
 theme: PaperMod
@@ -48,7 +48,7 @@ params:
 
     label:
         text: ""
-        icon: /blog/apple-touch-icon.png
+        icon: /apple-touch-icon.png
         iconHeight: 38
 
     # profile-mode
