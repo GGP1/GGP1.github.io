@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gastón Palomeque</title>
+    <link>https://ggp1.github.io/</link>
+    <description>Recent content on Gastón Palomeque</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryptoeconomics</title>
+      <link>https://ggp1.github.io/posts/cryptoeconomics/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggp1.github.io/posts/cryptoeconomics/</guid>
+      <description>The stability of modern monetary systems depends on people&amp;rsquo;s trust on the governments and institutions that rule them.
+Central banks impose the currencies used and arbitrarily control money supply and interest rates. Their negligent manipulation have caused inflation and hiperinflation crises all over the world, making people to look for better ways of exchanging assets to protect their property.
+The search for a solution along with the advances in computer science and cryptography led to the creation of decentralized virtual systems that do not require to trust on a third party to exchange assets in a secure, transparent and reliable way.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://ggp1.github.io/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggp1.github.io/search/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://ggp1.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggp1.github.io/about/</guid>
+      <description>I&amp;rsquo;m Gastón Palomeque - a self-taught backend software developer and open-source contributor.
+I have a keen interest in exploring how technology works to be able to automate tasks and solve problems in innovative and creative ways.
+Currently based in Argentina but always open to explore new horizons.
+Technical skills Have a look at my open-source projects.
+ Programming languages: Go, Bash, Python, SQL, Javascript (Node.js &amp;amp; React). Operating systems: Linux and Windows.</description>
+    </item>
+    
+    <item>
+      <title>Open-Source Projects</title>
+      <link>https://ggp1.github.io/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggp1.github.io/projects/</guid>
+      <description>Kure: Multi-platform, free and open-source CLI password manager that aims to offer the highest levels of security and privacy possible. Every record is encrypted with AES-GCM-256 and a unique key derived by Argon2id. First of its kind to offer sessions.   Adak: An e-commerce backend server with both monolithic and microservices versions. In the latter, inter-service communication is accomplished with GRPC and protocol buffers.   Atoll: A library for generating cryptographically secure and highly random secrets, optionally meeting specific requirements.</description>
+    </item>
+    
+  </channel>
+</rss>
