@@ -1,0 +1,9 @@
+*.txt
+
+content/project
+content/posts/*
+static/cv/notes.md
+static/cv
+
+# Articles published
+!content/posts/cryptoeconomics.md
