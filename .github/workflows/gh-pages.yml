@@ -12,6 +12,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Get theme
+        run: git submodule update --init --recursive
+
+      - name: Update theme to latest commit
+        run: git submodule update --remote --merge
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
