@@ -12,7 +12,7 @@ cover:
 
 The stability of modern monetary systems depends on people's trust on the governments and institutions that rule them.
 
-Central banks impose the currencies used and arbitrarily control money supply and interest rates. Their negligent manipulation have caused inflation and hiperinflation crises all over the world, driving people to look for better ways of exchanging assets to protect their property.
+Central banks impose the currencies used and arbitrarily control money supply and interest rates. Their negligent manipulation have caused inflation and hiperinflation crises all over the world, driving people to look for better ways of transferring assets to protect their property.
 
 The search for a solution along with the advances in computer science and cryptography led to the creation of decentralized virtual systems that do not require to trust on a third party to exchange assets in a secure, transparent and reliable manner. These systems are part of what's called **cryptoeconomics**.
 
