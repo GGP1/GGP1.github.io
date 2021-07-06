@@ -3,7 +3,7 @@ title: "Cryptoeconomics"
 date: 2021-07-06
 draft: false
 cover:
-    image: "/images/cryptoeconomics.jpg"
+    image: "/blog/images/cryptoeconomics.jpg"
     alt: "Cryptoeconomics"
     caption: ""
     relative: false
@@ -22,7 +22,7 @@ With World War II coming to and end in 1944, 44 alied nations celebrated the [Br
 
 The countries agreed on fixing their currencies to the U.S. dollar, and to tie the U.S. dollar to gold at a price of $35 per ounce. The currencies were now (supposedly) indirectly backed by and exchangeable for gold.
 
-![Bretton Woods Conference](/images/bretton_woods_conference.jpg "Bretton Woods Conference")
+![Bretton Woods Conference](/blog/images/bretton_woods_conference.jpg "Bretton Woods Conference")
 
 A few years later, a series of conflicts known as the [Cold War](https://www.history.com/topics/cold-war/cold-war-history) started between the United States, the Soviet Union and their respective allies. To face them, the United States began spending high amounts of money and in 1950 its balance of payments swung negative. 
 
@@ -38,7 +38,7 @@ Fiat currencies are, by definition, backed by **nothing other than government pr
 
 > [Fiat](https://www.merriam-webster.com/dictionary/fiat) (decree) means "authoritative or arbitrary order".
 
-![Fiat currencies](/images/fiat_currencies.jpg)
+![Fiat currencies](/blog/images/fiat_currencies.jpg)
 
 With the objective of offering an alternative to the traditional financial system, several entities tried implementing their own private currencies that were tied not to trust but to reserves of precious metals, like most nations used to do prior to the Bretton Woods agreement:
 
@@ -70,7 +70,7 @@ Altough B-Money and Bit Gold were never implemented, many of their concepts were
 
 On February, 2009 an individual/group under the name of **Satoshi Nakamoto**, whose identity is still unknown, [posted](https://p2pfoundation.ning.com/forum/topics/bitcoin-open-source) that he has developed a new open source P2P (peer-to-peer[^1]) e-cash system called **[Bitcoin](https://bitcoin.org/bitcoin.pdf)**.
 
-![Bitcoin](/images/bitcoin.jpg)
+![Bitcoin](/blog/images/bitcoin.jpg)
 
 Bitcoin replaces trust based models with a **decentralized electronic payment system based on cryptographic proof**. 
 
@@ -100,7 +100,7 @@ A blockchain is a [**distributed ledger**](https://en.wikipedia.org/wiki/Distrib
 - a timestamp
 - other information (bits, weight, size, merkle root, number of transactions, difficulty, etc.). 
 
-![Blockchain blocks content](/images/blockchain_blocks.png "Blockchain blocks content")
+![Blockchain blocks content](/blog/images/blockchain_blocks.png "Blockchain blocks content")
 
 These blocks are considered *immutable* as it's **infeasible to modify them** once they are appended to the database. The deeper the block is in the chain the harder it is to change.
 
@@ -114,7 +114,7 @@ Each node in the network has a database containing all the blockchain informatio
 
 A **distributed system** is a group of computers (also referred as nodes) operating independently and communicating between each other to exchange and agree on information to perform a task. 
 
-![Consensus mechanisms](/images/consensus_mechanisms.png)
+![Consensus mechanisms](/blog/images/consensus_mechanisms.png)
 
 A blockchain network is one of them, it requires to be **reliable, consistent and fault-tolerant** but also needs a way of ensuring that the nodes spend **scarce resources** (electricity, time, etc.) in order to be elegible and participate in the system, otherwise any of them could attempt to inject malicious blocks without much endeavor.
 
@@ -134,7 +134,7 @@ Once a miner finds (or thinks it has) the solution, it broadcasts the hash to th
 
 In case the solution is valid, the miner is **rewarded** with a pre-established amount of coins that may or may not vary over time depending on how the system is configured.
 
-![Proof of work](/images/pow.jpg "Proof of work")
+![Proof of work](/blog/images/pow.jpg "Proof of work")
 
 In a blockchain using proof of work, its security relies on the **difficulty of accumulating CPU power**. 
 
@@ -142,7 +142,7 @@ The network always trusts and replicates the **longest** valid chain, hence, cor
 
 This attack can change the current/future transactions but won't affect previously stored ones. Modifying a past transaction is even harder:
 
-![Proof of work attack](/images/proof_of_work.png)
+![Proof of work attack](/blog/images/proof_of_work.png)
 
 #### Computational scalability
 
@@ -152,7 +152,7 @@ This is one of the main criticisms to proof of work systems, considered by some 
 
 Cryptocurrencies using a proof of work system **trade computational scalability for social scalability**[^6].
 
-![Cryptocurrency mine](/images/crypto_mine.jpg "Thousands of computers calculating hashes in a cryptocurrency mine")
+![Cryptocurrency mine](/blog/images/crypto_mine.jpg "Thousands of computers calculating hashes in a cryptocurrency mine")
 
 Environmental impact being addressed as the main downside by some engineers have led them to seek more sustainable solutions. The most used PoW alternative is a CPU power-independent scheme called **proof of stake**.
 
@@ -165,7 +165,7 @@ Proof of stake implements a mechanism where the security is accomplished by **va
 
 > The probability of a node being chosen to validate the next block is proportional to its stake.
 
-![Proof of stake](/images/pos.jpg "Proof of stake")
+![Proof of stake](/blog/images/pos.jpg "Proof of stake")
 
 Furthermore, there are systems that promote what's called **delegated proof of stake** where stake-holder and validators roles are separated, letting the first group to delegate the actual validation role. 
 
@@ -183,7 +183,7 @@ Smart contracts are esentially computer programs run and replicated inside a blo
 
 The term was first introduced by *Nick Szabo* to refer to "a set of promises, specified in digital form, including protocols within which the parties perform on these promises". 
 
-![Smart contracts](/images/smart_contracts.png)
+![Smart contracts](/blog/images/smart_contracts.png)
 
 A smart contract has the following features:
 
@@ -221,7 +221,7 @@ Even though anyone could see/download/replicate the item, **NFTs cannot be repli
 
 For instance, the below artwork associated NFT was sold for 42,329 Ether (worth US$69.3 million back then) at a british auction house earlier this year.
 
-![Everydays: the first 5000 days by Mike Winkelmann](/images/everydays_the_first_5000_days.jpg "Everydays: the first 5000 days by Mike Winkelmann")
+![Everydays: the first 5000 days by Mike Winkelmann](/blog/images/everydays_the_first_5000_days.jpg "Everydays: the first 5000 days by Mike Winkelmann")
 
 ## Crypto finance
 
@@ -268,7 +268,7 @@ In spite of this comparison, note that the amount of available gold is, even tho
 
 To put an example, Bitcoin is set to issue a total of **21 millon BTC** to be reached in **2140**. Its current supply rate is of 6.25 BTC per 10 minutes (block mining rate), this amount is reduced by 50% every four years.
 
-![Bitcoin inflation vs time](/images/bitcoin_time_vs_inflation.png)
+![Bitcoin inflation vs time](/blog/images/bitcoin_time_vs_inflation.png)
 
 ### Volatility
 
@@ -328,7 +328,7 @@ In many cases, potential changes in the codebase are **deeply discussed and revi
 
 > When two groups differ radically in the scope of the project a [hard fork](https://www.investopedia.com/terms/h/hard-fork.asp) can be produced, where one group stays with the current state and the other copies and modifies it to meet their needs. In these cases, the new version gives each of the nodes the same amount of coins that had in the old version.
 
-![Bitcoin Core source code](/images/bitcoin_source_code.jpg "Bitcoin Core source code")
+![Bitcoin Core source code](/blog/images/bitcoin_source_code.jpg "Bitcoin Core source code")
 
 Investing in a cryptocurrency operated by a **non open-source** technology is something I do **not** recommend, no matter who is developing it. 
 

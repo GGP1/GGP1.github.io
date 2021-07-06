@@ -15,7 +15,7 @@ Currently based in Argentina but always open to explore new horizons.
 
 ### Technical skills
 
-Have a look at my [open-source projects](/projects).
+Have a look at my [open-source projects](/blog/projects).
 
 - **Programming languages**: Go, Bash, Python, SQL, Javascript (Node.js & React).
 - **Operating systems**: Linux and Windows.
