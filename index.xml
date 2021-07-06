@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Gastón Palomeque</title>
-    <link>https://ggp1.github.io/blog/</link>
+    <link>https://ggp1.github.io/</link>
     <description>Recent content on Gastón Palomeque</description>
     <image>
-      <url>https://ggp1.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://ggp1.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://ggp1.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ggp1.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cryptoeconomics</title>
-      <link>https://ggp1.github.io/blog/posts/cryptoeconomics/</link>
+      <link>https://ggp1.github.io/posts/cryptoeconomics/</link>
       <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://ggp1.github.io/blog/posts/cryptoeconomics/</guid>
+      <guid>https://ggp1.github.io/posts/cryptoeconomics/</guid>
       <description>The stability of modern monetary systems depends on people&amp;rsquo;s trust on the governments and institutions that rule them.
 Central banks impose the currencies used and arbitrarily control money supply and interest rates. Their negligent manipulation have caused inflation and hiperinflation crises all over the world, making people to look for better ways of exchanging assets to protect their property.
 The search for a solution along with the advances in computer science and cryptography led to the creation of decentralized virtual systems that do not require to trust on a third party to exchange assets in a secure, transparent and reliable way.</description>
@@ -23,10 +23,10 @@ The search for a solution along with the advances in computer science and crypto
     
     <item>
       <title>About</title>
-      <link>https://ggp1.github.io/blog/about/</link>
+      <link>https://ggp1.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://ggp1.github.io/blog/about/</guid>
+      <guid>https://ggp1.github.io/about/</guid>
       <description>I&amp;rsquo;m Gastón Palomeque - a self-taught backend software developer and open-source contributor.
 I have a keen interest in exploring how technology works to be able to automate tasks and solve problems in innovative and creative ways.
 Currently based in Argentina but always open to explore new horizons.
@@ -36,10 +36,10 @@ Technical skills Have a look at my open-source projects.
     
     <item>
       <title>Open-Source Projects</title>
-      <link>https://ggp1.github.io/blog/projects/</link>
+      <link>https://ggp1.github.io/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://ggp1.github.io/blog/projects/</guid>
+      <guid>https://ggp1.github.io/projects/</guid>
       <description>Kure: Multi-platform, free and open-source CLI password manager that aims to offer the highest levels of security and privacy possible. Every record is encrypted with AES-GCM-256 and a unique key derived by Argon2id. First of its kind to offer sessions.   Adak: An e-commerce backend server with both monolithic and microservices versions. In the latter, inter-service communication is accomplished with GRPC and protocol buffers.   Atoll: A library for generating cryptographically secure and highly random secrets, optionally meeting specific requirements.</description>
     </item>
     
