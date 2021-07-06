@@ -12,27 +12,27 @@ cover:
 
 The stability of modern monetary systems depends on people's trust on the governments and institutions that rule them.
 
-Central banks impose the currencies used and arbitrarily control money supply and interest rates. Their negligent manipulation have caused inflation and hiperinflation crises all over the world, making people to look for better ways of exchanging assets to protect their property.
+Central banks impose the currencies used and arbitrarily control money supply and interest rates. Their negligent manipulation have caused inflation and hiperinflation crises all over the world, driving people to look for better ways of exchanging assets to protect their property.
 
-The search for a solution along with the advances in computer science and cryptography led to the creation of decentralized virtual systems that do not require to trust on a third party to exchange assets in a secure, transparent and reliable way. These systems are part of what it's called **cryptoeconomics**.
+The search for a solution along with the advances in computer science and cryptography led to the creation of decentralized virtual systems that do not require to trust on a third party to exchange assets in a secure, transparent and reliable manner. These systems are part of what's called **cryptoeconomics**.
 
 # History
 
 With World War II coming to and end in 1944, 44 alied nations celebrated the [Bretton Woods](https://en.wikipedia.org/wiki/Bretton_Woods_system) agreement that established the rules, institutions and procedures that would regulate the international monetary system after the war.
 
-The countries agreed on fixing their currencies to the U.S. dollar, and to tie the U.S. dollar to gold at a price of $35 per ounce. The currencies were now (supposedly) indirectly backed by and exchangeable for gold.
+The countries agreed on fixing their currencies to the U.S. dollar, and to tie the U.S. dollar to gold at a price of $35 per ounce. The currencies were now (supposedly) **indirectly backed by and exchangeable for gold**.
 
 ![Bretton Woods Conference](/images/bretton_woods_conference.jpg "Bretton Woods Conference")
 
 A few years later, a series of conflicts known as the [Cold War](https://www.history.com/topics/cold-war/cold-war-history) started between the United States, the Soviet Union and their respective allies. To face them, the United States began spending high amounts of money and in 1950 its balance of payments swung negative. 
 
-What's worse, in 1964-1965 its president Lyndon Johnson launched the [Great Society Program](https://www.history.com/topics/1960s/great-society), a set of domestic programs to eliminate poverty, reduce crime, abolish inequality and improve the environment, which represented even more deficit. 
+What's worse, in 1964-1965 its president **Lyndon Johnson** launched the [Great Society Program](https://www.history.com/topics/1960s/great-society), a set of domestic programs to eliminate poverty, reduce crime, abolish inequality and improve the environment, which represented even more deficit. 
 
 As a consequence of all these spending, other countries became concern that the U.S. didn't have enough gold reserves to back the money that was being printed and started exchanging their dollars for gold and demanding physical delivery.
 
-> Before, the exchanges of currencies for gold were done within the banks of the U.S. to avoid the logistics of shipping the gold.
+> Previously, the exchanges of currencies for gold were done within the banks of the U.S. to avoid the logistics of shipping the gold.
 
-To prevent the outflow of gold, the American President Richard Nixon suspended *"temporarily"* the convertibility of the U.S. dollar to gold or other reserve assets in August 15, 1971. In March 1973 the fixed exchange rate system became a floating exchange rate system, giving birth to **fiat currencies**.
+To prevent the outflow of gold, the American President **Richard Nixon** suspended *"temporarily"* the convertibility of the U.S. dollar to gold or other reserve assets in August 15, 1971. In March 1973 the fixed exchange rate system became a floating exchange rate system, giving birth to **fiat currencies**.
 
 Fiat currencies are, by definition, backed by **nothing other than government promises and people's faith on them**. They are measured only against each other and can be easily manipulated by the governments.
 
@@ -258,7 +258,7 @@ Transactions offering a high reward will be prioritized and those who offer a lo
 
 The price of a cryptocurrency, like any economic asset, fluctuates based on **supply and demand**. The demand is generally led by the project that the cryptocurrency operates on and the team that is developing it. 
 
-> Unlike fiat currencies they are not created out of thin air but require the miners to spend **scarce resources** like time and electricity for it. I will be writing an article about money, if Bitcoin can be considered money and comparing it with fiat and commodity currencies.
+> Unlike fiat currencies they are not created out of thin air but require the miners to spend **scarce resources** like time and electricity for it. Side note: I will be writing an article about money, if Bitcoin can be considered money and comparing it with fiat and commodity currencies.
 
 In some cases **the supply is fixed** to a certain amount to be reached at some point in time, making them predictable and scarce by definition, as well as eliminating monetary inflation after the date set. This is why the term **digital gold** is often used. 
 
@@ -340,7 +340,7 @@ On the other hand, private codebases could hide malicious functionalities like, 
 
 Cryptography, economics and computer science have been combined for the creation of digital systems that aim to improve the way in which multiple parties interact. 
 
-Agreements that previously required to trust an intermediary to supervise them now can be executed in a predictable and transparent way by an algorithm with no owner. 
+Agreements that previously required to trust an intermediary to supervise them now can be executed in a predictable way by a publicly accessible algorithm. 
 
 Cryptocurrencies merely represent value and work as a medium of exchange inside those systems.
 
