@@ -19,4 +19,4 @@ searchHidden: true
 
 <br />
 
-- **[Blog](https://www.github.com/GGP1/blog)**: This blog, where I share what I learn about computer science, economics, cybersecurity, and other topics, is open-source and available on GitHub.
+- **[Blog](https://www.github.com/GGP1/GGP1.github.io)**: This blog, where I share what I learn about computer science, economics, cybersecurity, and other topics, is open-source and available on GitHub.
