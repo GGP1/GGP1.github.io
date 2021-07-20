@@ -15,7 +15,7 @@ cover:
     hidden: false # only hide on current single page
 ---
 
-Everyday we are more connected with our devices, we use them to share information, store capital, buy products, work, learn, for entertainment; basically anything. 
+Every day we are more connected with our devices, we use them to share information, store capital, buy products, work, learn, for entertainment; basically anything. 
 
 Along with these services come our accounts, that hold and will hold more value than ever as the time goes by. 
 
