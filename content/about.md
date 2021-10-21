@@ -7,21 +7,22 @@ hidemeta: true
 searchHidden: true
 ---
 
-I'm Gastón Palomeque - a self-taught backend software developer and open-source contributor.
+I'm Gastón Palomeque - a self-taught backend software developer and open-source contributor, currently working at [Avature](https://www.avature.net/).
 
 I have a keen interest in exploring how technology works to be able to automate tasks and solve problems in innovative and creative ways.
 
-Currently based in Argentina but always open to explore new horizons.
+I'm based in Argentina but always open to explore new horizons.
 
 ### Technical skills
 
 Have a look at my [open-source projects](/projects).
 
-- **Programming languages**: Go, Bash, Python, SQL, Javascript (Node.js & React).
+- **Programming languages**: Go, Python, Typescript, PHP, SQL, Bash.
 - **Operating systems**: Linux and Windows.
-- **Technical tools**: Git, Docker, SQL/NoSQL databases[^1], GRPC, Websockets, Prometheus, Kafka, RabbitMQ.
-- **Other areas of knowledge**: CLI, APIs, Cryptography, Networking, CI/CD, Microservices.
-- **Willing to learn**: Rust, AWS, Kubernetes, Distributed Systems, Artificial Intelligence.
+- **Libraries and frameworks**: NodeJS, React, React Native.
+- **Technical tools**: Git, Docker, SQL/NoSQL databases[^1], GRPC, Websockets, Prometheus, Kafka.
+- **Other areas of knowledge**: CLI, Cryptography, Networking, CI/CD, Microservices, Distributed Systems, Virtualization and Containerization.
+- **Willing to learn**: Rust, AWS, Kubernetes.
 
 ### Contact
 
@@ -33,7 +34,7 @@ Have a look at my [open-source projects](/projects).
 [^1]: 
     - **SQL**: Postgres, MySQL, SQLite.
     - **NoSQL**: 
-        - **Key-value**: Redis, BoltDB, BadgerDB.
+        - **Key-value**: Redis, etcd, BoltDB, BadgerDB.
         - **Document**: MongoDB.
         - **Column-Oriented**: Cassandra.
         - **Graph**: Dgraph.
