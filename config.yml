@@ -11,102 +11,103 @@ buildExpired: false
 # googleAnalytics: UA-123-45
 
 minify:
-    disableXML: true
-    minifyOutput: true
+  disableXML: true
+  minifyOutput: true
 
 params:
-    env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: Gastón Palomeque
+  description: Software developer
+  keywords:
+    [Blog, Software, Computer Science, Economics, Cryptography, Programming]
+  # author: Me
+  # author: ["Me", "You"] # multiple authors
+  images: ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat: January 2, 2006
+  defaultTheme: auto # dark, light
+  disableThemeToggle: false
+  ShowReadingTime: false
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: false
+  tocopen: false
+
+  assets:
+    disableHLJS: true
+    # disableFingerprinting: true
+    favicon: favicon.ico
+    favicon16x16: favicon-16x16.png
+    favicon32x32: favicon-32x32.png
+    apple_touch_icon: apple-touch-icon.png
+    safari_pinned_tab: safari-pinned-tab.svg
+
+  label:
+    text: ""
+    icon: /apple-touch-icon.png
+    iconHeight: 38
+
+  # profile-mode
+  profileMode:
+    enabled: false # needs to be explicitly set
     title: Gastón Palomeque
-    description: Software developer
-    keywords: [Blog, Software, Computer Science, Economics, Cryptography, Programming]
-    # author: Me
-    # author: ["Me", "You"] # multiple authors
-    images: ["<link or path of image for opengraph, twitter-cards>"]
-    DateFormat: January 2, 2006
-    defaultTheme: auto # dark, light
-    disableThemeToggle: false
-    ShowReadingTime: false
-    ShowShareButtons: false
-    ShowPostNavLinks: true
-    ShowBreadCrumbs: true
-    disableSpecial1stPost: false
-    disableScrollToTop: false
-    comments: false
-    hidemeta: false
-    hideSummary: false
-    showtoc: false
-    tocopen: false
+    subtitle: Software developer
+    imageUrl: ""
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: logo
+    buttons:
+      - name: Posts
+        url: posts
+      - name: Projects
+        url: projects
 
-    assets:
-        disableHLJS: true
-        # disableFingerprinting: true
-        favicon: favicon.ico
-        favicon16x16: favicon-16x16.png
-        favicon32x32: favicon-32x32.png
-        apple_touch_icon: apple-touch-icon.png
-        safari_pinned_tab: safari-pinned-tab.svg
+  # home-info mode
+  homeInfoParams:
+    Title: Gastón Palomeque # Greeting hand: \U0001F44B
+    Content: Software developer
 
-    label:
-        text: ""
-        icon: /apple-touch-icon.png
-        iconHeight: 38
+  socialIcons:
+    - name: github
+      url: "https://github.com/GGP1"
+    - name: twitter
+      url: "https://twitter.com/gastipalomeque"
+    # - name: linkedin
+    #   url: "https://linkedin.com/in/gastonpalomeque"
 
-    # profile-mode
-    profileMode:
-        enabled: false # needs to be explicitly set
-        title: Gastón Palomeque
-        subtitle: Software developer
-        imageUrl: ""
-        imageWidth: 120
-        imageHeight: 120
-        imageTitle: logo
-        buttons:
-            - name: Posts
-              url: posts
-            - name: Projects
-              url: projects
+  analytics:
+    google:
+      SiteVerificationTag: ""
+    bing:
+      SiteVerificationTag: ""
+    yandex:
+      SiteVerificationTag: ""
 
-    # home-info mode
-    homeInfoParams:
-        Title: Gastón Palomeque # Greeting hand: \U0001F44B
-        Content: Software developer
+  cover:
+    hidden: false # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
 
-    socialIcons:
-        - name: github
-          url: "https://github.com/GGP1"
-        - name: twitter
-          url: "https://twitter.com/gastipalomeque"
-        # - name: linkedin
-        #   url: "https://linkedin.com/in/gastonpalomeque"
+  editPost:
+    URL: ""
+    Text: "Suggest Changes" # edit text
+    appendFilePath: false # to append file path to Edit link
 
-    analytics:
-        google:
-            SiteVerificationTag: ""
-        bing:
-            SiteVerificationTag: ""
-        yandex:
-            SiteVerificationTag: ""
-
-    cover:
-        hidden: false # hide everywhere but not in structured data
-        hiddenInList: true # hide on list pages and home
-        hiddenInSingle: true # hide on single page
-
-    editPost:
-        URL: ""
-        Text: "Suggest Changes" # edit text
-        appendFilePath: false # to append file path to Edit link
-
-    # Search
-    # https://fusejs.io/api/options.html
-    fuseOpts:
-        isCaseSensitive: false
-        shouldSort: true
-        location: 0
-        distance: 1000
-        threshold: 0.4
-        minMatchCharLength: 0
-        keys: ["title", "permalink", "summary", "content"]
+  # Search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
 
 menu:
   main:
@@ -115,14 +116,14 @@ menu:
       url: /
       weight: 1
     # - identifier: categories
-      # name: categories
-      # url: /categories/
-      # weight: 2
+    # name: categories
+    # url: /categories/
+    # weight: 2
     - identifier: projects
       name: projects
       url: /projects/
       weight: 3
-    - identifier: posts 
+    - identifier: posts
       name: posts
       url: /posts/
       weight: 4
@@ -130,7 +131,7 @@ menu:
       name: about
       url: /about/
       weight: 5
-            
+
 # Search
 # outputs:
 #     home:
@@ -139,16 +140,16 @@ menu:
 #         - JSON # required
 # pygmentsUseClasses: true
 markup:
-    highlight:
-      codeFences: true
-      guessSyntax: true
-      lineNos: false
-      style: dracula
-      # Good-looking styles: dracula, paraiso-light, monokai, solarized-dark
-      anchorLineNos: false
-      hl_Lines: ""
-      lineAnchors: ""
-      lineNoStart: 1
-      lineNumbersInTable: false
-      noClasses: true
-      tabWidth: 4
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: dracula
+    # Good-looking styles: dracula, paraiso-light, monokai, solarized-dark
+    anchorLineNos: false
+    hl_Lines: ""
+    lineAnchors: ""
+    lineNoStart: 1
+    lineNumbersInTable: false
+    noClasses: true
+    tabWidth: 4
