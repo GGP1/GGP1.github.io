@@ -9,7 +9,18 @@
       <link>https://ggp1.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 20 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Applications containerization</title>
+      <link>https://ggp1.github.io/posts/applications_containerization/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggp1.github.io/posts/applications_containerization/</guid>
+      <description>The concept of containerization was first introduced in 1979 during the development of chroot (Version 7 Unix), which restricted an application&amp;rsquo;s file access to a specific directory - the root - and its children.
+The main benefit chroot brought in was process isolation, improving the system security such that an internal vulnerability wouldn&amp;rsquo;t affect external systems.
+In fact, chroot was the first of a series of technologies designed to protect each process from the others on the operating system.</description>
+    </item>
+    
     <item>
       <title>Protect your information</title>
       <link>https://ggp1.github.io/posts/protect_your_information/</link>
