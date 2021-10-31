@@ -60,7 +60,7 @@ func main() {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Home page")
+	fmt.Fprint(w, "Hello world")
 }
 ```
 
