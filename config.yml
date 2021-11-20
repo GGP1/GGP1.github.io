@@ -75,8 +75,6 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/GGP1"
-    - name: twitter
-      url: "https://twitter.com/gastipalomeque"
     # - name: linkedin
     #   url: "https://linkedin.com/in/gastonpalomeque"
 

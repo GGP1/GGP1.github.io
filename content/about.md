@@ -28,7 +28,6 @@ Have a look at my [open-source projects](/projects).
 
 - [Email](mailto:ggpalomeque@gmail.com)
 - [GitHub](https://www.github.com/GGP1)
-- [Twitter](https://www.twitter.com/gastipalomeque)
 <!-- - [LinkedIn](https://www.linkedin.com/in/gastonpalomeque) -->
 
 [^1]: 
