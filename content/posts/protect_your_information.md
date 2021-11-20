@@ -92,9 +92,9 @@ This kind of applications let you generate random passwords and protect your cre
 
 ![Keyboard](/images/keyboard0.jpg)
 
-There are many options on the market but I couldn't find any that offers a dynamic experience and uses one unique key for encrypting each record, instead of the whole database with the same key. 
+There are many options on the market but I couldn't find any that offers the enjoyable usage of the terminal, sessions and that uses one unique key for encrypting each record, instead of the whole database with the same key. 
 
-That's why I've developed **[Kure](https://www.github.com/GGP1/kure)**, it's free, open source, private and arguably one of the most secure and private password managers out there.
+That's why I've developed **[Kure](https://www.github.com/GGP1/kure)**, it's free, open source and arguably one of the most secure and private password managers out there. It can also be used in almost any device or platform.
 
 > To give you an idea, it uses the same algorithms ([AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)) the National Security Agency of the United States uses for encrypting **Top Secret** information as well as the [PHC winner](https://github.com/P-H-C/phc-winner-argon2) password hashing function.
 
@@ -102,18 +102,27 @@ However, it's based on the command-line and most people tend not to use it, that
 
 ## Two-factor authentication
 
+### Time-based one-time passwords (TOTP)
+
 Two-factor authentication is a form of identification that strengthens an account's security by requiring the user to enter a **code** that can be stored in an authentication app or received via sms/email. 
 
 So apart from something the user knows (*password*), now it is required something it has aswell (*device/service* that provides the code).
 
 > SMS and email are especially susceptible to phishing attacks, prioritize using an application (optimally an open-source one) as it doesn't share the code with anyone.
 
+![TOTP authentication example](/images/2fa.jpg "Time-based one-time passwords")
 
-![Two-factor authentication example](/images/2fa.jpg "Two-factor authentication")
+The code is time-based and it refreshes every 30 seconds, to generate the same code, the client and the server utilize a setup key and the number of seconds that have elapsed since the 00:00:00 UTC on 1 January 1970 (Unix epoch).
 
-The code is (generally) time-based and it refreshes every 30 seconds, to generate the same code, the client and the server utilize a setup key and the number of seconds that have elapsed since the 00:00:00 UTC on 1 January 1970 (Unix epoch).
+TOTPs makes it, not impossible, but much more complicated for an attacker to access an account as it now needs to get its hands on the **constantly refreshing** code.
 
-Two factor authentication makes it, not impossible, but much more complicated for an attacker to access an account as it now needs to get its hands on the **constantly refreshing** code.
+### Security keys
+
+Security keys provide another way of *two-factor authentication*, they generate codes **locally** with the **hardware** they have integrated, taking advantage of isolation and ensuring the security of the secret generation process. 
+
+> These devices can be used for producing static passwords, digital signatures, OTP, TOTPs and more.
+
+They add another requirement to the authentication of the user which is having access to the physical device.
 
 ## Encrypted connections
 
@@ -135,7 +144,7 @@ It's better **not** to enter any private information unless **strictly necessary
 
 Digital information is protected by the knowledge of other information (keys, secrets, codes), we can conclude, then, that **the confidentiality of some information is proportional to the difficulty of guessing or getting access to the secrets that secure it**.
 
-We have covered a few topics concerning computer networks security, there are still more advanced ones, such as cryptography, hacking techniques, security keys but they will be referenced in future blogs. 
+We have covered a few topics concerning computer networks security, there are still more advanced ones, such as cryptography and advanced hacking techniques but they will be referenced in future blogs. 
 
 For now, implementing the security measures that were introduced above will **dramatically decrease** the chances of someone else getting access to your information.
 
