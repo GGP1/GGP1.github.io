@@ -34,7 +34,7 @@ As a consequence of all these spending, other countries became concern that the 
 
 To prevent the outflow of gold, the American President **Richard Nixon** suspended *"temporarily"* the convertibility of the U.S. dollar to gold or other reserve assets in August 15, 1971. In March 1973 the fixed exchange rate system became a floating exchange rate system, giving birth to **fiat currencies**.
 
-Fiat currencies are, by definition, backed by **nothing other than government promises and people's faith on them**. They are measured only against each other and can be easily manipulated by the governments.
+Fiat currencies are, by definition, backed by **nothing other than government promises and people's faith on them**. They are measured only against each other and can be easily manipulated.
 
 > [Fiat](https://www.merriam-webster.com/dictionary/fiat) (decree) means "authoritative or arbitrary order".
 
@@ -92,7 +92,7 @@ The technology that powers most cryptocurrencies' systems and provides a way of 
 
 ## Blockchain
 
-A blockchain is a [**distributed ledger**](https://en.wikipedia.org/wiki/Distributed_ledger) (append-only database) managed by a decentralized network that stores transactions grouped in blocks, each block is linked to the previous one in the chain. A block contains:
+A blockchain is a [**distributed ledger**](https://en.wikipedia.org/wiki/Distributed_ledger) (append-only database) managed by a decentralized network that stores information (typically transactions) grouped in blocks. Each block is linked to the previous one in the chain and contains:
 
 - a *hash*[^3] of the current block's content
 - the hash of the previous block
@@ -102,13 +102,19 @@ A blockchain is a [**distributed ledger**](https://en.wikipedia.org/wiki/Distrib
 
 ![Blockchain blocks content](/images/blockchain_blocks.png "Blockchain blocks content")
 
-These blocks are considered *immutable* as it's **infeasible to modify them** once they are appended to the database. The deeper the block is in the chain the harder it is to change.
+These blocks are **immutable**, they cannot be modified once they are appended to the database.
+
+The only way to change some information is to replace the entire block and produce the largest chain, as we will see later, this is **extremelly difficult and lacks incentives**.
 
 This immutability provides great **transparency** to the system, absolutely all the blocks and their information can be seen by anyone, anytime. Take a look at the first block of the Bitcoin blockchain [here](https://www.blockchain.com/btc/block/0).
 
-> Transactions within a block are organized using a [merkle tree](https://en.wikipedia.org/wiki/Merkle_tree), which helps verify their integrity.
+> Blockchains storing transactions within a block organize them by using a [merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) to verify their integrity.
 
-Each node in the network has a database containing all the blockchain information and a need to coordinate all the nodes' data arises, this is one of the problems that *distributed systems* face and why many *consensus mechanisms* were created.
+For a block to take part of the blockchain, the [full nodes](https://en.bitcoin.it/wiki/Full_node) on the network must agree that it contains legitimate information. 
+
+Each *full node* holds a copy of the entire database and validates that the transactions and blocks meet the **blockchain's consensus rules**, communicating its decisions to the others in the network. It also updates the copy as new blocks are added.
+
+Coordinating all the nodes is a complex problem in a **distributed system** and the reason why many **consensus mechanisms** were created.
 
 ### Distributed systems and consensus mechanisms
 
@@ -235,12 +241,12 @@ The public key is used to identify a wallet, it could be thought as a unique add
 
 The private key is required to verify the ownership of the coins that are under the wallet with its public key pair. Losing it means losing access to all the coins.
 
-> **Important**: when you buy cryptocurrencies in a centralized exchange they are stored in a wallet owned by that exchange, it's not safe to keep the coins there as they are the main target of cybercriminals, plus you don't really own them. When you withdraw your funds is when they are sent to your wallet (the one locked by your private key and under your control).
+> **Important**: when you buy cryptocurrencies in an exchange, they are stored in a wallet owned by that exchange, it's not safe to keep the coins there as they are the main target of cybercriminals, plus you don't really own them. When you withdraw your funds is when they are sent to your wallet (the one protected by your private key and under your control).
 
 Wallets are tipically divided by their internet connectivity into two categories:
 
 - **Hot wallets**: they are connected to the internet and suitable for daily transactions but not for long-term holding as they are more prone to attacks.
-- **Cold wallets**: they are stored offline and offer higher security, ideally for holding.
+- **Cold wallets**: they offer higher security by handling the keys in an isolated and offline device (or a paper), ideally for holding.
 
 > The two most used types of wallets are hardware and software (desktop, mobile, web) but their differences won't be covered in this post, I invite you to investigate yourself.
 
