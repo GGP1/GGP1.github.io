@@ -268,7 +268,7 @@ If you are looking to serve through HTTPS you will have to add the two following
 
 ```dockerfile
 # First stage
-RUN apk add --update --no-cache git ca-certificates && update-ca-certificates
+RUN apk add --update --no-cache ca-certificates && update-ca-certificates
 
 # Second stage
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
