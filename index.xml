@@ -9,7 +9,18 @@
       <link>https://ggp1.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Native generic list</title>
+      <link>https://ggp1.github.io/posts/rn_generic_list/</link>
+      <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggp1.github.io/posts/rn_generic_list/</guid>
+      <description>React Native&amp;rsquo;s FlatList is a component that supports many cool features while being simple and easy to use, it&amp;rsquo;s a good example of a well-designed piece of software and that&amp;rsquo;s why I decided to take it a step further.
+For that, I&amp;rsquo;ve developed a generic list built on top of it that handles pagination and refreshing internally, reducing a lot of repetitive code from my previous implementation.
+I looked for something like this online but couldn&amp;rsquo;t find anything similar, even though it might be useful for many people, so I decided to share it.</description>
+    </item>
+    
     <item>
       <title>Applications containerization</title>
       <link>https://ggp1.github.io/posts/applications_containerization/</link>
@@ -63,7 +74,7 @@ Technical skills Have a look at my open-source projects.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://ggp1.github.io/projects/</guid>
-      <description>Kure: Multi-platform, free and open-source CLI password manager that aims to offer the highest levels of security and privacy possible. Every record is encrypted with AES-GCM-256 and a unique key derived by Argon2id. First of its kind to offer sessions.   Adak: An e-commerce backend server with both monolithic and microservices versions. In the latter, inter-service communication is accomplished with GRPC and protocol buffers.   Atoll: A library for generating cryptographically secure and highly random secrets, optionally meeting specific requirements.</description>
+      <description>Kure: Cross-platform, free and open-source CLI password manager that aims to offer the highest levels of security and privacy possible. Every record is encrypted with AES-GCM-256 and a unique key derived by Argon2id. First of its kind to offer sessions.   Adak: An e-commerce backend server with both monolithic and microservices versions. In the latter, inter-service communication is accomplished with GRPC and protocol buffers.   Atoll: A library for generating cryptographically secure and highly random secrets, optionally meeting specific requirements.</description>
     </item>
     
   </channel>
