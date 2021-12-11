@@ -7,7 +7,7 @@ hidemeta: true
 searchHidden: true
 ---
 
-- **[Kure](https://www.github.com/GGP1/kure):** Multi-platform, free and open-source CLI password manager that aims to offer the highest levels of security and privacy possible. Every record is encrypted with AES-GCM-256 and a unique key derived by Argon2id. First of its kind to offer sessions.
+- **[Kure](https://www.github.com/GGP1/kure):** Cross-platform, free and open-source CLI password manager that aims to offer the highest levels of security and privacy possible. Every record is encrypted with AES-GCM-256 and a unique key derived by Argon2id. First of its kind to offer sessions.
 
 <br />
 

@@ -261,7 +261,7 @@ ENTRYPOINT ["/server"]
 ```
 
 > In Go, it's necessary to disable CGO (`CGO_ENABLED=0`) when building from scratch so the executable does not depend on the system C libraries and will embed everything it needs to run.
->
+
 ![From scratch](/images/server_image3.jpg "FROM scratch")
 
 If you are looking to serve through HTTPS you will have to add the two following lines:
