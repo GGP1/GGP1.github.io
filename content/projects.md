@@ -15,7 +15,7 @@ searchHidden: true
 
 <br />
 
-- **[Atoll](https://www.github.com/GGP1/atoll):** A library for generating cryptographically secure and highly random secrets, optionally meeting specific requirements. 
+- **[Atoll](https://www.github.com/GGP1/atoll):** A library for generating cryptographically secure random secrets, optionally meeting specific requirements. 
 
 <br />
 
