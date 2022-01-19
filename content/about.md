@@ -17,12 +17,12 @@ I'm based in Argentina but always open to explore new horizons.
 
 Have a look at my [open-source projects](/projects).
 
-- **Programming languages**: Go, Python, Typescript, PHP, SQL, Bash.
+- **Programming languages**: Go, Python, Typescript, SQL, Bash.
 - **Operating systems**: Linux and Windows.
 - **Libraries and frameworks**: NodeJS, React, React Native.
 - **Technical tools**: Git, Docker, SQL/NoSQL databases[^1], GRPC, Websockets, Prometheus, Kafka.
 - **Other areas of knowledge**: CLI, Cryptography, Networking, CI/CD, Microservices, Distributed Systems, Virtualization and Containerization.
-- **Willing to learn**: Rust, AWS, Kubernetes.
+- **Willing to learn**: Kubernetes, AWS, Rust.
 
 ### Contact
 
