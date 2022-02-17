@@ -11,8 +11,6 @@ I'm Gastón Palomeque - a self-taught backend software developer and open-source
 
 I have a keen interest in exploring how technology works to be able to automate tasks and solve problems in innovative and creative ways.
 
-I'm based in Argentina but always open to explore new horizons.
-
 ### Technical skills
 
 Have a look at my [open-source projects](/projects).
@@ -22,13 +20,12 @@ Have a look at my [open-source projects](/projects).
 - **Libraries and frameworks**: NodeJS, React, React Native.
 - **Technical tools**: Git, Docker, SQL/NoSQL databases[^1], GRPC, Websockets, Prometheus, Kafka.
 - **Other areas of knowledge**: CLI, Cryptography, Networking, CI/CD, Microservices, Distributed Systems, Virtualization and Containerization.
-- **Willing to learn**: Kubernetes, AWS, Rust.
 
 ### Contact
 
 - [Email](mailto:ggpalomeque@gmail.com)
 - [GitHub](https://www.github.com/GGP1)
-<!-- - [LinkedIn](https://www.linkedin.com/in/gastonpalomeque) -->
+- [LinkedIn](https://www.linkedin.com/in/gastonpalomeque)
 
 [^1]: 
     - **SQL**: Postgres, MySQL, SQLite.
