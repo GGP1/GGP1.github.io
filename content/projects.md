@@ -11,6 +11,10 @@ searchHidden: true
 
 <br />
 
+- **[Comeet](https://www.github.com/GGP1/kure):** Service that keeps track of events from multiple calendar services and accounts, and sends you notifications thorugh different platforms.
+
+<br />
+
 - **[Adak](https://www.github.com/GGP1/adak):** An e-commerce backend server with both monolithic and microservices versions. In the latter, inter-service communication is accomplished with GRPC and protocol buffers.
 
 <br />
@@ -19,7 +23,7 @@ searchHidden: true
 
 <br />
 
-- **[Sqan](https://github.com/GGP1/sqan)**: SQL rows scanner with recursive mapping.
+- **[Sqan](https://github.com/GGP1/sqan)**: Standard library-compatible SQL rows scanner with recursive mapping.
 
 <br />
 
