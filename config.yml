@@ -69,14 +69,14 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: Gastón Palomeque # Greeting hand: \U0001F44B
-    Content: Software developer
+    Title: Gastón Palomeque
+    Content: Backend software engineer
 
   socialIcons:
     - name: github
       url: "https://github.com/GGP1"
-    # - name: linkedin
-    #   url: "https://linkedin.com/in/gastonpalomeque"
+    - name: linkedin
+      url: "https://linkedin.com/in/gastonpalomeque"
 
   analytics:
     google:
@@ -142,8 +142,7 @@ markup:
     codeFences: true
     guessSyntax: true
     lineNos: false
-    style: dracula
-    # Good-looking styles: dracula, paraiso-light, monokai, solarized-dark
+    style: dracula # Other options: paraiso-light, monokai, solarized-dark
     anchorLineNos: false
     hl_Lines: ""
     lineAnchors: ""
