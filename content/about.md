@@ -15,10 +15,10 @@ I have a keen interest in exploring how technology works to be able to automate 
 
 Have a look at my [open-source projects](/projects).
 
-- **Programming languages**: Go, Python, Typescript, SQL, Bash.
+- **Programming languages**: Go, Python, Typescript, SQL, PHP, Bash.
 - **Operating systems**: Linux and Windows.
 - **Libraries and frameworks**: NodeJS, React, React Native.
-- **Technical tools**: Git, Docker, SQL/NoSQL databases[^1], GRPC, Websockets, Prometheus, Kafka.
+- **Technical tools**: Git, Docker, RDBMS/NoSQL databases[^1], GRPC, Websockets, Prometheus, Kafka.
 - **Other areas of knowledge**: CLI, Cryptography, Networking, CI/CD, Microservices, Distributed Systems, Virtualization and Containerization.
 
 ### Contact
@@ -28,7 +28,7 @@ Have a look at my [open-source projects](/projects).
 - [LinkedIn](https://www.linkedin.com/in/gastonpalomeque)
 
 [^1]: 
-    - **SQL**: Postgres, MySQL, SQLite.
+    - **RDBMS**: Postgres, MySQL, SQLite.
     - **NoSQL**: 
         - **Key-value**: Redis, etcd, BoltDB, BadgerDB.
         - **Document**: MongoDB.
