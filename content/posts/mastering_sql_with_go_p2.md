@@ -6,6 +6,9 @@ draft: false
 showToc: true
 tocOpen: false
 image: "/images/sql_go_p2.png" # image path/url
+tags:
+  - Go
+  - SQL
 ---
 
 This is the part 2 of a series covering **sql** and **Go**, this time, we will cover how to work with SQL transactions context and isolation levels, results dynamic scanning, full text search and recursive queries as well as using multiple result sets to do many queries in a single roundtrip.

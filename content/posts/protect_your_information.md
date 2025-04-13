@@ -8,6 +8,11 @@ ShowReadingTime: false
 ShowBreadCrumbs: false
 ShowPostNavLinks: true
 image: "/images/data_protection.jpg" # image path/url
+tags:
+  - Security
+  - Encryption
+  - Entropy
+  - Randomness
 ---
 
 Every day we are more connected with our devices, we use them to share information, store capital, buy products, work, learn, for entertainment; basically anything. 

@@ -6,6 +6,9 @@ draft: false
 showToc: true
 tocOpen: false
 image: "/images/sql_go_p1.png" # image path/url
+tags:
+  - Go
+  - SQL
 ---
 
 I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.

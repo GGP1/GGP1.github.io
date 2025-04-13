@@ -4,6 +4,11 @@ date: 2021-07-06
 draft: false
 image: "/images/new_money.jpg"
 description: "The new monetary standard"
+tags:
+  - Money
+  - Cryptography
+  - Distributed systems
+  - Blockchain
 ---
 
 The stability of modern monetary systems depends on people's trust on the governments and institutions that rule them.

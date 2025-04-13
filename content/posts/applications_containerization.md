@@ -5,6 +5,11 @@ date: 2023-10-20
 draft: false
 image: "/images/containers.jpg"
 description: "History about and how to containerize applications"
+tags:
+  - Go
+  - Docker
+  - Optimization
+  - Security
 ---
 
 The concept of containerization was first introduced in 1979 during the development of [chroot](https://en.wikipedia.org/wiki/Chroot) (Version 7 Unix), which restricted an application's file access to a specific directory - the root - and its children. 
