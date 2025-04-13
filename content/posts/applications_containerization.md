@@ -1,14 +1,10 @@
 ---
 title: "Applications containerization"
 description: ""
-date: 2021-10-20
+date: 2023-10-20
 draft: false
-cover:
-    image: "/images/containers.jpg"
-    alt: "Applications containerization"
-    caption: ""
-    relative: false
-    hidden: false
+image: "/images/containers.jpg"
+description: "History about and how to containerize applications"
 ---
 
 The concept of containerization was first introduced in 1979 during the development of [chroot](https://en.wikipedia.org/wiki/Chroot) (Version 7 Unix), which restricted an application's file access to a specific directory - the root - and its children. 
@@ -124,7 +120,7 @@ To fix this, we can visit the [Go official images on Docker Hub](https://hub.doc
 > Alpine is minimal Docker image based on Alpine Linux with a complete package index and only 5 MB in size.
 
 ```dockerfile
-FROM golang:1.17.1-alpine3.14
+FROM golang:1.24-alpine3.21
 ```
 
 With this change only, we are going to avoid broken CI/CD pipelines and save 626 MB of space. 
@@ -178,7 +174,7 @@ In other words, they allow us to **segmentate the building process** in order to
 ```dockerfile
 # ----- First stage -----
 # Declare this image as builder
-FROM golang:1.17.1-alpine3.14 AS builder
+FROM golang:1.24-alpine3.21 AS builder
 
 WORKDIR /app
 
@@ -191,7 +187,7 @@ COPY . .
 RUN go build -o server -ldflags="-s -w"
 
 # ----- Second stage -----
-FROM alpine:3.14.2
+FROM alpine:3.21
 
 # Copy the binary from the builder to this image
 COPY --from=builder /app/server .
@@ -212,7 +208,7 @@ This should be avoided at all cost since an attacker could get to the container 
 If for some reason you need command execution, create a user with limited privileges and switch to it like so:
 
 ```dockerfile
-FROM alpine:3.14.2
+FROM alpine:3.21
 
 # Set USER and UID environment variables
 ENV USER=<username>
@@ -233,14 +229,14 @@ CMD ["/server"]
 
 ## FROM scratch
 
-*[scratch](https://hub.docker.com/_/scratch/#!)* is Docker's base image, as of version 1.5.0 is a no-op and **it won't create an extra layer** in the image.
+*[scratch](https://hub.docker.com/_/scratch/#!)* is Docker's base image, as of version 1.5.0, is a no-op and **won't create an extra layer** in the image.
 
 Using `FROM scratch` signals to the build process that the next command in the Dockerfile is the first filesystem layer.
 
 This image doesn't have a shell installed so it's not possible to enter the container and execute commands, increasing the security and reducing the size of the image.
 
 ```dockerfile
-FROM golang:1.17.1-alpine3.14 AS builder
+FROM golang:1.24-alpine3.21 AS builder
 
 WORKDIR /app
 

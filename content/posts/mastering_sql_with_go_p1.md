@@ -1,10 +1,11 @@
 ---
 title: "Mastering SQL with Go - Part 1"
 description: ""
-date: 2022-01-17
+date: 2024-11-24
 draft: false
 showToc: true
 tocOpen: false
+image: "/images/sql_go_p1.png" # image path/url
 ---
 
 I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.
@@ -13,7 +14,7 @@ This post is the part one of a series where I will try to show how to manage dat
 
 Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).
 
-### Connection tuning
+## Connection tuning
 
 When we connect to an SQL database through a driver and using the `database/sql` package we get the [`sql.DB`](https://pkg.go.dev/database/sql#DB) database handle, which manages a pool of active connections that are safe for concurrent use, creating new ones when required. 
 
@@ -52,22 +53,20 @@ I personally prefer to begin limiting the maximum number and time of **idle** co
 
 > A simple and useful way of getting more information about the database connection is the [`db.Stats()`](https://pkg.go.dev/database/sql#DB.Stats) method.
 
-### Scan null values
+## Scanning null values
 
 If we attempt to scan a null value into a non-pointer variable we will receive an error saying that a null value can't be scanned into a Go type. There are (at least) three ways to address this problem:
 
-#### COALESCE
+### COALESCE
 
 The *COALESCE* function takes *n* arguments and returns the first one that is not null, hence, we can use the targeted field as the first argument and then a default value to be returned when the first one is null.
-
-> COALESCE provides the same functionality as NVL or IFNULL from the SQL-standard.
 
 The query would be as follows: 
 ```go
 "SELECT COALESCE(description, '') as description FROM posts WHERE id='sample"
 ```
 
-#### Standard library types
+### Standard library types
 
 The `database/sql` package has various types for scanning potentially null values (`sql.NullString`, `sql.NullInt`, `sql.NullBool`, etc.)
 
@@ -87,7 +86,7 @@ func scanString(row *sql.Row) (string, error) {
 }
 ```
 
-#### Pointers
+### Pointers
 
 The last option, and probably the most used one, is to declare a pointer that will be equal to `nil` in case there is no value stored.
 
@@ -103,7 +102,7 @@ func scanString(row *sql.Row) (*string, error) {
 }
 ```
 
-### Storing slices
+## Storing slices
 
 Storing a list of items that correspond to an object is generally done by using a new table and a foreign key to link both records.
 
@@ -138,7 +137,7 @@ func getKeys(db *sql.DB, id string) ([]string, error) {
 }
 ```
 
-### Update only what changes
+## Update only what changes
 
 The [COALESCE](#coalesce) function we've seen above is also handy for updating only the fields that the user specified a value for.
 
@@ -164,11 +163,11 @@ func updatePost(db *sql.DB, id string, post UpdatePost) error {
 
 This way, if the user updated the content only, COALESCE will detect that the image argument is null and thus use the already stored value, leaving the field as it was prior to the update.
 
-### Batch inserts
+## Batch inserts
 
 Inserting multiple records at once is typically an expensive operation and that's why we need an optimal solution for it.
 
-#### Bulk imports - COPY command
+### Bulk imports
 
 The `COPY` command is optimized for loading large numbers of rows; it is less flexible than `INSERT`, but incurs significantly less overhead for large data loads. 
 
@@ -200,7 +199,7 @@ func bulkImports(db *sql.DB, posts []Post) error {
 }
 ```
 
-#### Query building
+### Query building
 
 Another way to insert multiple records in one call is to build a query containing a set of arguments for each of them. 
 
@@ -214,7 +213,7 @@ For example:
 >
 > Note that the maximum number of arguments supported by `VALUES` is 1000.
 
-### Pagination
+## Pagination
 
 Pagination is the process of dividing a document into discrete pages.
 
@@ -226,7 +225,7 @@ On each request, we return a new cursor (which may be an id or an encoded string
 
 Here are two common ways of implementing pagination in SQL that are safe from injection:
 
-#### Using UUIDs
+### Using UUIDs
 
 We select the posts that were created before the date passed, in case the date matches with the creation timestamp, the ID is compared.
 
@@ -242,7 +241,7 @@ ORDER BY created_at DESC, id DESC LIMIT 5`
 db.Query(q, createdAt, id)
 ```
 
-#### Using lexicographically sortable IDs
+### Using lexicographically sortable IDs
 
 Since the IDs are already sorted there is no need to compare the creation date, the ID is the cursor itself.
 
@@ -251,7 +250,7 @@ id := "01FMA344NAGPSKF4TNAXMC06KS"
 db.Query("SELECT * FROM posts WHERE id < $1 ORDER BY id DESC LIMIT 5", id)
 ```
 
-### Prepared statements
+## Prepared statements
 
 When we make a query using [`db.Query()`](https://pkg.go.dev/database/sql#DB.Query), a prepared statement is built underneath to run it, but it's used only once.
 
@@ -278,7 +277,7 @@ for _, id := range postIDs {
 }
 ```
 
-### Stored procedures
+## Stored procedures
 
 Stored procedures are user-defined functions that can be stored in the database for later reuse, they can contain parameters but can't return anything.
 
@@ -304,6 +303,6 @@ We can execute it doing:
 db.ExecContext(ctx, "CALL likePost($1, $2)", postID, userID)
 ```
 
-### Parting words
+## Parting words
 
 I hope you found this post useful, in the next one we will be taking a look at transactions (propagation using context and isolation levels), dynamic scanning, full text search, recursive queries and much more.

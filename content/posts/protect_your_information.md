@@ -1,18 +1,13 @@
 ---
 title: "Protect your information"
-date: 2021-07-20
+date: 2022-02-20
 draft: false
 # categories:
 #  - cybersecurity
 ShowReadingTime: false
 ShowBreadCrumbs: false
 ShowPostNavLinks: true
-cover:
-    image: "/images/data_protection.jpg" # image path/url
-    alt: "" # alt text
-    caption: "" # display caption under cover
-    relative: false # when using page bundles set this to true
-    hidden: false # only hide on current single page
+image: "/images/data_protection.jpg" # image path/url
 ---
 
 Every day we are more connected with our devices, we use them to share information, store capital, buy products, work, learn, for entertainment; basically anything. 

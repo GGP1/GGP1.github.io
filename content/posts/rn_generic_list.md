@@ -2,12 +2,11 @@
 title: "React Native generic list"
 date: 2021-12-11
 draft: false
-cover:
-    image: "/images/rn_list.png"
-    alt: "React Native List example" # alt text
-    caption: "" # display caption under cover
-    relative: false # when using page bundles set this to true
-    hidden: false # only hide on current single pag
+image: /images/rn_list.png
+description: "React Native List example"
+tags:
+  - React
+  - Typescript
 ---
 
 React Native's *FlatList* is a component that supports many cool features while being simple and easy to use, it's a good example of a well-designed piece of software and that's why I decided to take it a step further.

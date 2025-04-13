@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gastón Palomeque</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Gastón Palomeque</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mastering SQL with Go - Part 2</title>
+      <link>http://localhost:1313/posts/mastering_sql_with_go_p2/</link>
+      <pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/mastering_sql_with_go_p2/</guid>
+      <description>&lt;p&gt;This is the part 2 of a series covering &lt;strong&gt;sql&lt;/strong&gt; and &lt;strong&gt;Go&lt;/strong&gt;, this time, we will cover how to work with SQL transactions context and isolation levels, results dynamic scanning, full text search and recursive queries as well as using multiple result sets to do many queries in a single roundtrip.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;To go to part one, click &lt;a href=&#34;../mastering_sql_with_go_p1&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;transactions&#34;&gt;Transactions&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start with transactions, why are they necessary?&lt;/p&gt;&#xA;&lt;p&gt;A transaction is a way for an application to group several reads and writes together into a logical unit.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mastering SQL with Go - Part 1</title>
+      <link>http://localhost:1313/posts/mastering_sql_with_go_p1/</link>
+      <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/mastering_sql_with_go_p1/</guid>
+      <description>&lt;p&gt;I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.&lt;/p&gt;&#xA;&lt;p&gt;This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package &lt;a href=&#34;https://github.com/golang/go/tree/master/src/database/sql&#34;&gt;&lt;code&gt;database/sql&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Applications containerization</title>
+      <link>http://localhost:1313/posts/applications_containerization/</link>
+      <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/applications_containerization/</guid>
+      <description>&lt;p&gt;The concept of containerization was first introduced in 1979 during the development of &lt;a href=&#34;https://en.wikipedia.org/wiki/Chroot&#34;&gt;chroot&lt;/a&gt; (Version 7 Unix), which restricted an application&amp;rsquo;s file access to a specific directory - the root - and its children.&lt;/p&gt;&#xA;&lt;p&gt;The main benefit chroot brought in was &lt;strong&gt;process isolation&lt;/strong&gt;, improving the system security such that an internal vulnerability wouldn&amp;rsquo;t affect external systems.&lt;/p&gt;&#xA;&lt;p&gt;In fact, chroot was the first of a series of technologies designed to protect each process from the others on the operating system.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Protect your information</title>
+      <link>http://localhost:1313/posts/protect_your_information/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/protect_your_information/</guid>
+      <description>&lt;p&gt;Every day we are more connected with our devices, we use them to share information, store capital, buy products, work, learn, for entertainment; basically anything.&lt;/p&gt;&#xA;&lt;p&gt;Along with these services come our accounts, that hold and will hold more value than ever as the time goes by.&lt;/p&gt;&#xA;&lt;p&gt;There&amp;rsquo;s no doubt we need them safe. In this article, I will try to help you &lt;strong&gt;protect your information&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;passwords&#34;&gt;Passwords&lt;/h2&gt;&#xA;&lt;p&gt;Passwords are the &lt;strong&gt;most critical part of every system security&lt;/strong&gt;, they are the key that protect very sensitive information so it&amp;rsquo;s specially important to understand how to manage them carefully.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>React Native generic list</title>
+      <link>http://localhost:1313/posts/rn_generic_list/</link>
+      <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rn_generic_list/</guid>
+      <description>&lt;p&gt;React Native&amp;rsquo;s &lt;em&gt;FlatList&lt;/em&gt; is a component that supports many cool features while being simple and easy to use, it&amp;rsquo;s a good example of a well-designed piece of software and that&amp;rsquo;s why I decided to take it a step further.&lt;/p&gt;&#xA;&lt;p&gt;For that, I&amp;rsquo;ve developed a generic list built on top of it that handles &lt;strong&gt;pagination&lt;/strong&gt; and &lt;strong&gt;refreshing&lt;/strong&gt; internally, reducing a &lt;em&gt;lot&lt;/em&gt; of repetitive code from my previous implementation.&lt;/p&gt;&#xA;&lt;p&gt;I looked for something like this online but couldn&amp;rsquo;t find anything similar, even though it might be useful for many people, so I decided to share it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The new monetary standard</title>
+      <link>http://localhost:1313/posts/new_monetary_standard/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/new_monetary_standard/</guid>
+      <description>&lt;p&gt;The stability of modern monetary systems depends on people&amp;rsquo;s trust on the governments and institutions that rule them.&lt;/p&gt;&#xA;&lt;p&gt;Central banks impose the currencies used and arbitrarily control money supply and interest rates. Their negligent manipulation have caused inflation and hiperinflation crises all over the world, driving people to look for better ways of storing their capital to protect it from money debasement.&lt;/p&gt;&#xA;&lt;p&gt;The search for a solution along with the advances in computer science and cryptography led to the creation of a decentralized virtual system that does not require to trust on a third party to exchange assets in a secure, transparent and reliable manner. This system is called &lt;strong&gt;Bitcoin&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<link rel="icon" href=/favicon.ico type="image/gif">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+</noscript>
+
+
+<link rel="stylesheet" href="/css/font.css" media="all">
+
+
+
+<meta property="og:url" content="http://localhost:1313/posts/applications_containerization/">
+  <meta property="og:site_name" content="Gastón Palomeque">
+  <meta property="og:title" content="Applications containerization">
+  <meta property="og:description" content="History about and how to containerize applications">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-10-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-10-20T00:00:00+00:00">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Applications containerization">
+  <meta name="twitter:description" content="History about and how to containerize applications">
+
+
+<link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/footer.css" media="all">
+
+
+<link rel="stylesheet" href="/css/theme.css" media="all">
+
+<style>
+    :root {
+        --text-color: #000;
+        --text-secondary-color: #6c757d;
+        --text-link-color: #4d7fb5;
+        --background-color: #eaedf0;
+        --secondary-background-color: #64ffda1a;
+        --primary-color: #4d7fb5;
+        --secondary-color: #f8f9fa;
+		--btn-background-color: #9cc3ea8f;
+
+         
+        --text-color-dark: #e4e6eb;
+        --text-secondary-color-dark: #b0b3b8;
+        --text-link-color-dark: #ffffff;
+        --background-color-dark: #18191a;
+        --secondary-background-color-dark: #212529;
+        --primary-color-dark: #ffffff;
+        --secondary-color-dark: #212529;
+		--btn-background-color-dark: #212529;
+    }
+    body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    html {
+        background-color: var(--background-color) !important;
+    }
+
+    body::-webkit-scrollbar {
+        height: 0px;
+        width: 8px;
+        background-color: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: #b0b0b0;
+        outline: 1px solid var(--background-color);
+    }
+
+    #search-content::-webkit-scrollbar {
+        width: .5em;
+        height: .1em;
+        background-color: var(--background-color);
+    }
+</style>
+
+
+
+<meta name="description" content="History about and how to containerize applications">
+<link rel="stylesheet" href="/css/single.css">
+
+
+<script defer src="/fontawesome-6/all-6.4.2.js"></script>
+
+
+  
+  
+
+  <title>
+Applications containerization | Gastón Palomeque
+
+  </title>
+</head>
+
+<body class="light">
+  
+  
+<script>
+    let localStorageValue = localStorage.getItem("pref-theme");
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    switch (localStorageValue) {
+        case "dark":
+            document.body.classList.add('dark');
+            break;
+        case "light":
+            document.body.classList.remove('dark');
+            break;
+        default:
+            if (mediaQuery) {
+                document.body.classList.add('dark');
+            }
+            break;
+    }
+</script>
+
+
+
+
+<script>
+    var prevScrollPos = window.pageYOffset;
+    window.addEventListener("scroll", function showHeaderOnScroll() {
+        let profileHeaderElem = document.getElementById("profileHeader");
+        let currentScrollPos = window.pageYOffset;
+        let resetHeaderStyle = false;
+        let showNavBarOnScrollUp =  true ;
+        let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
+        if (showNavBar) {
+            profileHeaderElem.classList.add("showHeaderOnTop");
+        } else {
+            resetHeaderStyle = true;
+        }
+        if(currentScrollPos === 0) {
+            resetHeaderStyle = true;
+        }
+        if(resetHeaderStyle) {
+            profileHeaderElem.classList.remove("showHeaderOnTop");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+</script>
+
+
+
+<header id="profileHeader">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
+        <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
+            
+            <a class="navbar-brand primary-font text-wrap" href="/">
+                
+                <img src="/favicon.ico" width="30" height="30"
+                    class="d-inline-block align-top">
+                
+                
+            </a>
+
+            
+                <div>
+                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Search'
+                        aria-label="Search" oninput="searchOnChange(event)">
+                </div>
+            
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                    <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                </svg>
+            </button>
+
+            
+            <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    
+                        <li class="nav-item navbar-text d-block d-md-none">
+                            <div class="nav-link">
+                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Search' aria-label="Search" oninput="searchOnChange(event)">
+                            </div>
+                        </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#about" aria-label="about">
+                            About
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#experience"
+                            aria-label="experience">
+                            Experience
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#projects"
+                            aria-label="projects">
+                            Projects
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/posts/" title="">
+                            
+                            Posts
+                        </a>
+                    </li>
+                    
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        
+                        <div class="text-center">
+                            <button id="theme-toggle">
+                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg>
+                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          <div class="title mb-5">
+            <h1 class="text-center mb-4">Applications containerization</h1>
+            <div class="text-center">
+              
+              Oct 20, 2023
+
+              
+            </div>
+          </div>
+          
+          <div class="featured-image">
+            <img class="img-fluid mx-auto d-block" src="/images/containers.jpg" alt="Applications containerization">
+          </div>
+          
+          <article class="page-content  p-2">
+          <p>The concept of containerization was first introduced in 1979 during the development of <a href="https://en.wikipedia.org/wiki/Chroot">chroot</a> (Version 7 Unix), which restricted an application&rsquo;s file access to a specific directory - the root - and its children.</p>
+<p>The main benefit chroot brought in was <strong>process isolation</strong>, improving the system security such that an internal vulnerability wouldn&rsquo;t affect external systems.</p>
+<p>In fact, chroot was the first of a series of technologies designed to protect each process from the others on the operating system.</p>
+<p>More than two decades later, in 2002, a feature called <strong><a href="https://en.wikipedia.org/wiki/Linux_namespaces">namespaces</a></strong> was included into the Linux kernel.</p>
+<p>Namespaces partition kernel resources such that one set of processes sees one set of resources while another set of processes sees a different set of resources.</p>
+<p>Five years later, engineers at Google released <strong><a href="https://en.wikipedia.org/wiki/Cgroups">cgroups</a></strong>, another feature that was added to the Linux kernel and that limits, accounts for, and isolates the resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes.</p>
+<p>The two last are the main features that the Docker Inc. took advantage of when creating the <a href="https://www.docker.com/products/container-runtime">Docker Engine</a> container runtime in 2013, since then, containers have gained more and more adoption in the software industry all around the world.</p>
+<h2 id="containers">Containers</h2>
+<p>Containers encapsulate the code, libraries and configurations necessary to run an application, they offer <strong>process-level isolation</strong> and <strong>share the kernel of the host operating system</strong> with other containers.</p>
+<blockquote>
+<p>While running in isolated processes could prevent malicious code from one container to impact others running in the same server, if there is a vulnerability in the kernel that would affect all of them indistinctively, as opposed to virtual machines that provide <strong>hardware-level isolation</strong>.</p></blockquote>
+<p>The fact that they do not require an operating system per container makes them <strong>lightweight, portable and inexpensive</strong>.</p>
+<p><img src="/images/docker_containers.jpg" alt="Docker containers running in one machine" title="Docker containers running in one machine"></p>
+<p>Multiple containers can be created easily and fast in <strong>any machine running the Docker Engine</strong>.</p>
+<p>Like virtual machines, they are already set up and ready for the application to run, providing a consistent solution and saving a lot of time to developers.</p>
+<h2 id="application">Application</h2>
+<p>We will use the following super simple server written in Go to demonstrate how to containerize applications efficiently:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">package</span> <span style="color:#e06c75">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#98c379">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#98c379">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#98c379">&#34;log&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">http</span>.<span style="color:#61afef;font-weight:bold">HandleFunc</span>(<span style="color:#98c379">&#34;/&#34;</span>, <span style="color:#e06c75">home</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">http</span>.<span style="color:#61afef;font-weight:bold">ListenAndServe</span>(<span style="color:#98c379">&#34;:3000&#34;</span>, <span style="color:#e5c07b">nil</span>); <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#e06c75">log</span>.<span style="color:#61afef;font-weight:bold">Fatal</span>(<span style="color:#e06c75">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">home</span>(<span style="color:#e06c75">w</span> <span style="color:#e06c75">http</span>.<span style="color:#e06c75">ResponseWriter</span>, <span style="color:#e06c75">r</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">http</span>.<span style="color:#e06c75">Request</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">fmt</span>.<span style="color:#61afef;font-weight:bold">Fprint</span>(<span style="color:#e06c75">w</span>, <span style="color:#98c379">&#34;Hello world&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The docker image we are going to build is more or less similar to the ones you would use in any other compiled language so, without further ado, let&rsquo;s start.</p>
+<h3 id="dockerfile">Dockerfile</h3>
+<p>We will start off with a <strong>naive image</strong>, improving it along the way and explaning the improvements.</p>
+<p>The directory we are using has the following structure</p>
+<pre tabindex="0"><code>└── app
+  ├── main.go
+  ├── Dockerfile
+  └── go.mod
+</code></pre><p>and the initial Dockerfile looks like</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#7f848e"># Start from an image with the Go language and its dependencies installed</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">FROM</span><span style="color:#98c379"> golang:latest</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Move into the &#34;/app&#34; directory (it&#39;s created if not exists)</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">WORKDIR</span><span style="color:#98c379"> /app</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Copy everything inside the host&#39;s current directory into the image&#39;s &#34;/app&#34; </span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># directory (&#34;.&#34; means current directory)</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># COPY &lt;host src&gt; &lt;container dst&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Compile server and put the binary inside the image&#39;s current directory, </span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># thus it will be at &#34;/app/server&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># go build -o &lt;path&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> go build -o server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># When the image is run in a container, execute the binary</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">CMD</span> [<span style="color:#98c379">&#34;/app/server&#34;</span>]
+</span></span></code></pre></div><p>Having the image specification done we only have to move into the directory containing the file and build it executing <code>docker build -t server .</code>, here&rsquo;s the result:</p>
+<p><img src="/images/server_image0.jpg" alt="Basic image" title="Basic image"></p>
+<p>To run the image inside a container and expose our server execute <code>docker run -p 3000:3000 server</code>.</p>
+<blockquote>
+<p>The -t flag takes the image&rsquo;s tag name: <code>-t &lt;name&gt;</code>.</p>
+<p>The -p flag publishes a container&rsquo;s port to the host: <code>-p &lt;host port&gt;:&lt;container port&gt;</code>.</p></blockquote>
+<p>Perfect, our server is up and running, we&rsquo;re done! Well, not so fast, we can do it much better.</p>
+<h3 id="image-versioning">Image versioning</h3>
+<p>In our first example we didn&rsquo;t specify the version of the image we started from, if the Go team releases a new version with <strong>breaking changes</strong> our application will be built from it and <strong>potentially break</strong>.</p>
+<p>To fix this, we can visit the <a href="https://hub.docker.com/_/golang">Go official images on Docker Hub</a> and find a version that suits our needs, in this case I&rsquo;m going to use the <a href="https://hub.docker.com/_/alpine">alpine</a>-based version.</p>
+<blockquote>
+<p>Alpine is minimal Docker image based on Alpine Linux with a complete package index and only 5 MB in size.</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#c678dd">FROM</span><span style="color:#98c379"> golang:1.24-alpine3.21</span>
+</span></span></code></pre></div><p>With this change only, we are going to avoid broken CI/CD pipelines and save 626 MB of space.</p>
+<p><img src="/images/server_image1.jpg" alt="1.17.1-alpine3.14 version" title="1.17.1-alpine3.14 version"></p>
+<p>The only reason not to start from an alpine image is if it does not support a package/tool that your application requires to build or run.</p>
+<h3 id="modules-caching">Modules caching</h3>
+<p>If we were to develop using Docker with the image above, every change we make in the application&rsquo;s code would leave Docker&rsquo;s caching layer useless.</p>
+<p>When building the image, dependencies are downloaded when the application is compiled (<code>go build -o server</code>) but if we modify a single line of code we change the directory&rsquo;s content and invalidate Docker&rsquo;s caching layer, forcing the process to download all the dependencies again.</p>
+<p>In order to fix this issue, we are going to copy and download the Go modules before any change is introduced (in other languages this may be done differently).</p>
+<p>The next time the image is built, they will be taken from the cache instead of re-downloaded, unless we add or remove a dependency.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#7f848e"># Copy the modules file and put it in the container</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> go.mod .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Download modules</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> go mod download
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Previously, this step was invalidating the cache</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Normally it would try to download the modules here but they are now cached</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> go build -o server
+</span></span></code></pre></div><h3 id="removing-binary-debug-flags">Removing binary debug flags</h3>
+<blockquote>
+<p>This is <strong>Go-specific</strong></p></blockquote>
+<p>The binary size can be reduced by removing the symbol table and DWARF debugging information generation from it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> go build -o server -ldflags<span style="color:#56b6c2">=</span><span style="color:#98c379">&#34;-s -w&#34;</span>
+</span></span></code></pre></div><h2 id="multi-stage-builds">Multi-stage builds</h2>
+<p>Each instruction in the dockerfile adds a layer to the image and creates artifacts for its execution, multi-stage builds allow us to copy artifacts from one stage to another and leave behind those that won&rsquo;t take part in the final image.</p>
+<blockquote>
+<p>We are left with the image from the final stage only, the other ones behave like temporary tables/files.</p></blockquote>
+<p>In other words, they allow us to <strong>segmentate the building process</strong> in order to get to a final image containing just what we need to run our application, leaving behind the dependencies used for its compilation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#7f848e"># ----- First stage -----</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Declare this image as builder</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">FROM</span><span style="color:#98c379"> golang:1.24-alpine3.21 AS builder</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">WORKDIR</span><span style="color:#98c379"> /app</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> go.mod .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> go mod download
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> go build -o server -ldflags<span style="color:#56b6c2">=</span><span style="color:#98c379">&#34;-s -w&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># ----- Second stage -----</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">FROM</span><span style="color:#98c379"> alpine:3.21</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Copy the binary from the builder to this image</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> --from<span style="color:#56b6c2">=</span>builder /app/server .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">CMD</span> [<span style="color:#98c379">&#34;/server&#34;</span>]
+</span></span></code></pre></div><p><img src="/images/server_image2.jpg" alt="Multi-stage builds" title="Multi-stage builds"></p>
+<p>Voilà! We have reduced the image size from 321MB to just 11.7MB. But this is not the end, let&rsquo;s see what else can be improved.</p>
+<h2 id="limited-privileges">Limited privileges</h2>
+<p>Containers built with the images we just reviewed allow executing commands and can be accessed with root privileges by using <code>docker exec -it &lt;containerID&gt; sh</code>.</p>
+<p>This should be avoided at all cost since an attacker could get to the container and do whatever he pleases with it and its information.</p>
+<p>If for some reason you need command execution, create a user with limited privileges and switch to it like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#c678dd">FROM</span><span style="color:#98c379"> alpine:3.21</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Set USER and UID environment variables</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">ENV</span> <span style="color:#e06c75">USER</span><span style="color:#56b6c2">=</span>&lt;username&gt;
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">ENV</span> <span style="color:#e06c75">UID</span><span style="color:#56b6c2">=</span>&lt;uid&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> --from<span style="color:#56b6c2">=</span>builder /app/server .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Add user and change the binary file ownership and permissions</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> adduser <span style="color:#e06c75">$USER</span> -D -g <span style="color:#98c379">&#34;&#34;</span> -s <span style="color:#98c379">&#34;/sbin/nologin&#34;</span> -u <span style="color:#e06c75">$UID</span> <span style="color:#98c379">\
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379"></span>    <span style="color:#56b6c2">&amp;&amp;</span> chown <span style="color:#e06c75">$USER</span> /server <span style="color:#98c379">\
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379"></span>    <span style="color:#56b6c2">&amp;&amp;</span> chmod <span style="color:#d19a66">0700</span> /server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Switch to the user created to execute the command as $USER</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">USER</span><span style="color:#98c379"> $USER</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">CMD</span> [<span style="color:#98c379">&#34;/server&#34;</span>]
+</span></span></code></pre></div><h2 id="from-scratch">FROM scratch</h2>
+<p><em><a href="https://hub.docker.com/_/scratch/#!">scratch</a></em> is Docker&rsquo;s base image, as of version 1.5.0, is a no-op and <strong>won&rsquo;t create an extra layer</strong> in the image.</p>
+<p>Using <code>FROM scratch</code> signals to the build process that the next command in the Dockerfile is the first filesystem layer.</p>
+<p>This image doesn&rsquo;t have a shell installed so it&rsquo;s not possible to enter the container and execute commands, increasing the security and reducing the size of the image.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#c678dd">FROM</span><span style="color:#98c379"> golang:1.24-alpine3.21 AS builder</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">WORKDIR</span><span style="color:#98c379"> /app</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> go.mod .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> go mod download
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> <span style="color:#e06c75">CGO_ENABLED</span><span style="color:#56b6c2">=</span><span style="color:#d19a66">0</span> go build -o server -ldflags<span style="color:#56b6c2">=</span><span style="color:#98c379">&#34;-s -w&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># --------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">FROM</span><span style="color:#98c379"> scratch</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> --from<span style="color:#56b6c2">=</span>builder /app/server .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">ENTRYPOINT</span> [<span style="color:#98c379">&#34;/server&#34;</span>]
+</span></span></code></pre></div><blockquote>
+<p>In Go, it&rsquo;s necessary to disable CGO (<code>CGO_ENABLED=0</code>) when building from scratch so the executable does not depend on the system C libraries and will embed everything it needs to run.</p></blockquote>
+<p><img src="/images/server_image3.jpg" alt="From scratch" title="FROM scratch"></p>
+<p>If you are looking to serve through HTTPS you will have to add the two following lines:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#7f848e"># First stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">RUN</span> apk add --update --no-cache ca-certificates <span style="color:#56b6c2">&amp;&amp;</span> update-ca-certificates
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Second stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">COPY</span> --from<span style="color:#56b6c2">=</span>builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+</span></span></code></pre></div><h2 id="wrapping-up">Wrapping up</h2>
+<p>In summary, we have covered how to take advantage of image versioning, modules caching, limited privileges and multi-stage builds to deliver reliable, small and secure images.</p>
+<p>From now on, we can run our server in any machine with Docker installed, use Kubernetes to orchestrate different copies of it and/or use a cloud provider to let the world consume our services in just a few minutes.</p>
+
+          </article>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div id="stickySideBar" class="sticky-sidebar">
+          
+          <aside class="toc">
+              <h5>
+                Table Of Contents
+              </h5>
+              <div class="toc-content">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#containers">Containers</a></li>
+    <li><a href="#application">Application</a>
+      <ul>
+        <li><a href="#dockerfile">Dockerfile</a></li>
+        <li><a href="#image-versioning">Image versioning</a></li>
+        <li><a href="#modules-caching">Modules caching</a></li>
+        <li><a href="#removing-binary-debug-flags">Removing binary debug flags</a></li>
+      </ul>
+    </li>
+    <li><a href="#multi-stage-builds">Multi-stage builds</a></li>
+    <li><a href="#limited-privileges">Limited privileges</a></li>
+    <li><a href="#from-scratch">FROM scratch</a></li>
+    <li><a href="#wrapping-up">Wrapping up</a></li>
+  </ul>
+</nav>
+              </div>
+          </aside>
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        
+      </div>
+    </div>
+  </div>
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  
+  let stickySideBarElem = document.getElementById("stickySideBar");
+  let stickyNavBar =  true ;
+  if(stickyNavBar) {
+    let headerElem = document.getElementById("profileHeader");
+    let headerHeight = headerElem.offsetHeight + 15;
+    stickySideBarElem.style.top = headerHeight + "px";
+  } else {
+    stickySideBarElem.style.top = "50px";
+  }
+</script>
+
+
+
+
+  </div><footer>
+	
+
+	
+
+	<div class="text-center p-3">
+
+	
+	<span class="px-1">
+		<a href="https://github.com/GGP1" aria-label="github">
+			<svg xmlns="http://www.w3.org/2000/svg" width="2.1em" height="2.1em" viewBox="0 0 1792 1792">
+				<path id="footer-socialNetworks-github-svg-path"
+					d="M522 1352q-8 9-20-3-13-11-4-19 8-9 20 3 12 11 4 19zm-42-61q9 12 0 19-8 6-17-7t0-18q9-7 17 6zm-61-60q-5 7-13 2-10-5-7-12 3-5 13-2 10 5 7 12zm31 34q-6 7-16-3-9-11-2-16 6-6 16 3 9 11 2 16zm129 112q-4 12-19 6-17-4-13-15t19-7q16 5 13 16zm63 5q0 11-16 11-17 2-17-11 0-11 16-11 17-2 17 11zm58-10q2 10-14 14t-18-8 14-15q16-2 18 9zm964-956v960q0 119-84.5 203.5t-203.5 84.5h-224q-16 0-24.5-1t-19.5-5-16-14.5-5-27.5v-239q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-121-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-86-13.5q-44 113-7 204-79 85-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-40 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 103t.5 68q0 22-11 33.5t-22 13-33 1.5h-224q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z" />
+			</svg>
+		</a>
+	</span>
+	
+
+	
+	<span class="px-1">
+		<a href="https://linkedin.com/gastonpalomeque" aria-label="linkedin">
+			<svg xmlns="http://www.w3.org/2000/svg" width='1.8em' height='1.8em' fill="#fff" aria-label="LinkedIn"
+				viewBox="0 0 512 512">
+				<rect width="512" height="512" fill="#0077b5" rx="15%" />
+				<circle cx="142" cy="138" r="37" />
+				<path stroke="#fff" stroke-width="66" d="M244 194v198M142 194v198" />
+				<path d="M276 282c0-20 13-40 36-40 24 0 33 18 33 45v105h66V279c0-61-32-89-76-89-34 0-51 19-59 32" />
+			</svg>
+		</a>
+	</span>
+	
+
+	
+
+	
+
+	<div class="pt-3">
+		Gastón Palomeque
+	</div>
+</div>
+</footer>
+<script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+</script>
+
+
+    <script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="search-content" class="py-2">
+    <div class="container" id="search-results"></div>
+  </section>
+</body>
+
+</html>

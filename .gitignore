@@ -2,12 +2,15 @@
 
 content/project
 content/posts/*
-static/cv/notes.md
-static/cv
+static/applications
+public/applications
+domainDNSConfig.JPG
+
 
 # Published articles
-!content/posts/cryptoeconomics.md
+!content/posts/new_monetary_standard.md
 !content/posts/protect_your_information.md
 !content/posts/applications_containerization.md
 !content/posts/rn_generic_list.md
 !content/posts/mastering_sql_with_go_p1.md
+!content/posts/mastering_sql_with_go_p2.md
