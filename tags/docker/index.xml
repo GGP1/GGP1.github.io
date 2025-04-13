@@ -1,3 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Gastón Palomeque</title><link>https://ggp1.github.io/tags/docker/</link><description>Recent content in Docker on Gastón Palomeque</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Applications containerization</title><link>https://ggp1.github.io/posts/applications_containerization/</link><pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate><guid>https://ggp1.github.io/posts/applications_containerization/</guid><description>&lt;p>The concept of containerization was first introduced in 1979 during the development of &lt;a href="https://en.wikipedia.org/wiki/Chroot">chroot&lt;/a> (Version 7 Unix), which restricted an application&amp;rsquo;s file access to a specific directory - the root - and its children.&lt;/p>
-&lt;p>The main benefit chroot brought in was &lt;strong>process isolation&lt;/strong>, improving the system security such that an internal vulnerability wouldn&amp;rsquo;t affect external systems.&lt;/p>
-&lt;p>In fact, chroot was the first of a series of technologies designed to protect each process from the others on the operating system.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Gastón Palomeque</title>
+    <link>https://ggp1.github.io/tags/docker/</link>
+    <description>Recent content in Docker on Gastón Palomeque</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ggp1.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Applications containerization</title>
+      <link>https://ggp1.github.io/posts/applications_containerization/</link>
+      <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://ggp1.github.io/posts/applications_containerization/</guid>
+      <description>&lt;p&gt;The concept of containerization was first introduced in 1979 during the development of &lt;a href=&#34;https://en.wikipedia.org/wiki/Chroot&#34;&gt;chroot&lt;/a&gt; (Version 7 Unix), which restricted an application&amp;rsquo;s file access to a specific directory - the root - and its children.&lt;/p&gt;&#xA;&lt;p&gt;The main benefit chroot brought in was &lt;strong&gt;process isolation&lt;/strong&gt;, improving the system security such that an internal vulnerability wouldn&amp;rsquo;t affect external systems.&lt;/p&gt;&#xA;&lt;p&gt;In fact, chroot was the first of a series of technologies designed to protect each process from the others on the operating system.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

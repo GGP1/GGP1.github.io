@@ -1,7 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on Gastón Palomeque</title><link>https://ggp1.github.io/tags/security/</link><description>Recent content in Security on Gastón Palomeque</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/tags/security/index.xml" rel="self" type="application/rss+xml"/><item><title>Applications containerization</title><link>https://ggp1.github.io/posts/applications_containerization/</link><pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate><guid>https://ggp1.github.io/posts/applications_containerization/</guid><description>&lt;p>The concept of containerization was first introduced in 1979 during the development of &lt;a href="https://en.wikipedia.org/wiki/Chroot">chroot&lt;/a> (Version 7 Unix), which restricted an application&amp;rsquo;s file access to a specific directory - the root - and its children.&lt;/p>
-&lt;p>The main benefit chroot brought in was &lt;strong>process isolation&lt;/strong>, improving the system security such that an internal vulnerability wouldn&amp;rsquo;t affect external systems.&lt;/p>
-&lt;p>In fact, chroot was the first of a series of technologies designed to protect each process from the others on the operating system.&lt;/p></description></item><item><title>Protect your information</title><link>https://ggp1.github.io/posts/protect_your_information/</link><pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate><guid>https://ggp1.github.io/posts/protect_your_information/</guid><description>&lt;p>Every day we are more connected with our devices, we use them to share information, store capital, buy products, work, learn, for entertainment; basically anything.&lt;/p>
-&lt;p>Along with these services come our accounts, that hold and will hold more value than ever as the time goes by.&lt;/p>
-&lt;p>There&amp;rsquo;s no doubt we need them safe. In this article, I will try to help you &lt;strong>protect your information&lt;/strong>.&lt;/p>
-&lt;h2 id="passwords">Passwords&lt;/h2>
-&lt;p>Passwords are the &lt;strong>most critical part of every system security&lt;/strong>, they are the key that protect very sensitive information so it&amp;rsquo;s specially important to understand how to manage them carefully.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Gastón Palomeque</title>
+    <link>https://ggp1.github.io/tags/security/</link>
+    <description>Recent content in Security on Gastón Palomeque</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ggp1.github.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Applications containerization</title>
+      <link>https://ggp1.github.io/posts/applications_containerization/</link>
+      <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://ggp1.github.io/posts/applications_containerization/</guid>
+      <description>&lt;p&gt;The concept of containerization was first introduced in 1979 during the development of &lt;a href=&#34;https://en.wikipedia.org/wiki/Chroot&#34;&gt;chroot&lt;/a&gt; (Version 7 Unix), which restricted an application&amp;rsquo;s file access to a specific directory - the root - and its children.&lt;/p&gt;&#xA;&lt;p&gt;The main benefit chroot brought in was &lt;strong&gt;process isolation&lt;/strong&gt;, improving the system security such that an internal vulnerability wouldn&amp;rsquo;t affect external systems.&lt;/p&gt;&#xA;&lt;p&gt;In fact, chroot was the first of a series of technologies designed to protect each process from the others on the operating system.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Protect your information</title>
+      <link>https://ggp1.github.io/posts/protect_your_information/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://ggp1.github.io/posts/protect_your_information/</guid>
+      <description>&lt;p&gt;Every day we are more connected with our devices, we use them to share information, store capital, buy products, work, learn, for entertainment; basically anything.&lt;/p&gt;&#xA;&lt;p&gt;Along with these services come our accounts, that hold and will hold more value than ever as the time goes by.&lt;/p&gt;&#xA;&lt;p&gt;There&amp;rsquo;s no doubt we need them safe. In this article, I will try to help you &lt;strong&gt;protect your information&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;passwords&#34;&gt;Passwords&lt;/h2&gt;&#xA;&lt;p&gt;Passwords are the &lt;strong&gt;most critical part of every system security&lt;/strong&gt;, they are the key that protect very sensitive information so it&amp;rsquo;s specially important to understand how to manage them carefully.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
