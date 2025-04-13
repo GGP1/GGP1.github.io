@@ -17,7 +17,7 @@ enableRobotsTXT: true
 
 markup:
   highlight:
-    style: onedark
+    style: github
   goldmark:
     renderer:
       unsafe: true
@@ -182,7 +182,7 @@ params:
         content: |
           Currently working as a Senior Software Engineer in the Server team, maintaining the APIs, cluster, external integrations and cloud services.
 
-          I am in charge of developing the server and its communications with the agents and indexer nodes for the upcoming 5.0 release.
+          I am leading the development of the server and its communication with the agents and indexer nodes for the upcoming 5.0 release.
 
       - job: "Software Developer"
         company: "Avature"
