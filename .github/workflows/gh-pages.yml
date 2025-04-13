@@ -18,7 +18,7 @@ jobs:
           hugo-version: latest
 
       - name: Build
-        run: hugo --minify --buildDrafts --gc
+        run: hugo build --gc --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
