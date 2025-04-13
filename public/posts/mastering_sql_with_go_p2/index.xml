@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Mastering SQL with Go - Part 2 on Gastón Palomeque</title>
-    <link>http://localhost:1313/posts/mastering_sql_with_go_p2/</link>
-    <description>Recent content in Mastering SQL with Go - Part 2 on Gastón Palomeque</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/mastering_sql_with_go_p2/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mastering SQL with Go - Part 2 on Gastón Palomeque</title><link>https://ggp1.github.io/posts/mastering_sql_with_go_p2/</link><description>Recent content in Mastering SQL with Go - Part 2 on Gastón Palomeque</description><generator>Hugo</generator><language>en</language><lastBuildDate/><atom:link href="https://ggp1.github.io/posts/mastering_sql_with_go_p2/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
