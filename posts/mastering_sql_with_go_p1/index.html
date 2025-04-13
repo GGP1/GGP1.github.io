@@ -1,144 +1,721 @@
-<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Mastering SQL with Go - Part 1 | Gastón Palomeque</title><meta name=keywords content><meta name=description content="I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<link rel="icon" href=/favicon.ico type="image/gif">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+</noscript>
+
+
+<link rel="stylesheet" href="/css/font.css" media="all">
+
+
+
+<meta property="og:url" content="http://localhost:1313/posts/mastering_sql_with_go_p1/">
+  <meta property="og:site_name" content="Gastón Palomeque">
+  <meta property="og:title" content="Mastering SQL with Go - Part 1">
+  <meta property="og:description" content="I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.
 This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package database/sql.
-Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc)."><meta name=author content><link rel=canonical href=https://ggp1.github.io/posts/mastering_sql_with_go_p1/><link crossorigin=anonymous href=/assets/css/stylesheet.min.15f3f69b5a510ba11e60d2a099f0f25695a8b6148a1422fb5ef6e357d5f8c47c.css integrity="sha256-FfP2m1pRC6EeYNKgmfDyVpWothSKFCL7XvbjV9X4xHw=" rel="preload stylesheet" as=style><link rel=preload href=/apple-touch-icon.png as=image><link rel=icon href=https://ggp1.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://ggp1.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://ggp1.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://ggp1.github.io/apple-touch-icon.png><link rel=mask-icon href=https://ggp1.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><meta name=generator content="Hugo 0.96.0"><meta property="og:title" content="Mastering SQL with Go - Part 1"><meta property="og:description" content="I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.
+Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-24T00:00:00+00:00">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mastering SQL with Go - Part 1">
+  <meta name="twitter:description" content="I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.
 This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package database/sql.
-Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc)."><meta property="og:type" content="article"><meta property="og:url" content="https://ggp1.github.io/posts/mastering_sql_with_go_p1/"><meta property="og:image" content="https://ggp1.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-01-17T00:00:00+00:00"><meta property="article:modified_time" content="2022-01-17T00:00:00+00:00"><meta property="og:site_name" content="Gastón Palomeque"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://ggp1.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="Mastering SQL with Go - Part 1"><meta name=twitter:description content="I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.
-This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package database/sql.
-Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc)."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://ggp1.github.io/posts/"},{"@type":"ListItem","position":2,"name":"Mastering SQL with Go - Part 1","item":"https://ggp1.github.io/posts/mastering_sql_with_go_p1/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Mastering SQL with Go - Part 1","name":"Mastering SQL with Go - Part 1","description":"I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.\nThis post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package database/sql.\nExplaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).","keywords":[],"articleBody":"I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.\nThis post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package database/sql.\nExplaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).\nConnection tuning When we connect to an SQL database through a driver and using the database/sql package we get the sql.DB database handle, which manages a pool of active connections that are safe for concurrent use, creating new ones when required.\n To perform actions on a dedicated connection, we can use sql.Conn.\n The management of these connections can be personalized by using the following methods:\n// Set the maximum number of concurrent open connections. // There is no limit defined by default. // After the limit is passed, new datatabase operations will block // until there's an available connection. db.SetMaxOpenConns(n int)  // Set a connection's maximum life time. // Default is 2. // Increasing this value will improve the database performance at the // cost of consuming more memory to keep the connections alive. db.SetMaxIdleConns(n int)  // Set a connection's maximum life time, once the time is reached it // cannot be used again. // By default connections are reused forever. // Every one second the `database/sql` package removes expired connections // from the pool. db.SetConnMaxLifetime(d time.Duration)  // Set a connection's maximum idle time. // No value is set by default, connections may be idle their entire lifetime. db.SetConnMaxIdleTime(d time.Duration) The recommended values for these configurations depend on the type of application the database is used for, it may be convenient to specify and tweak them on the fly based on metrics gathered.\nI personally prefer to begin limiting the maximum number and time of idle connections to avoid holding them for a long period of time (i.e. a burst of requests may open many connections that later won’t be used anymore).\n A simple and useful way of getting more information about the database connection is the db.Stats() method.\n Scan null values If we attempt to scan a null value into a non-pointer variable we will receive an error saying that a null value can’t be scanned into a Go type. There are (at least) three ways to address this problem:\nCOALESCE The COALESCE function takes n arguments and returns the first one that is not null, hence, we can use the targeted field as the first argument and then a default value to be returned when the first one is null.\n COALESCE provides the same functionality as NVL or IFNULL from the SQL-standard.\n The query would be as follows:\n\"SELECT COALESCE(description, '') as description FROM posts WHERE id='sample\" Standard library types The database/sql package has various types for scanning potentially null values (sql.NullString, sql.NullInt, sql.NullBool, etc.)\n// SELECT description FROM posts WHERE id='sample'; func scanString(row *sql.Row) (string, error) { \tvar nullable sql.NullString \tif err := row.Scan(\u0026nullable); err != nil { \treturn \"\", err \t} \t// We can check if the value is null by using the nullable.Valid field. \tif !nullable.Valid { \t// nullable is null \t}  \treturn nullable.String, nil } Pointers The last option, and probably the most used one, is to declare a pointer that will be equal to nil in case there is no value stored.\n// SELECT description FROM posts WHERE id='sample'; func scanString(row *sql.Row) (*string, error) { \tvar nullable *string \tif err := row.Scan(\u0026nullable); err != nil { \treturn \"\", err \t}  \treturn nullable, nil } Storing slices Storing a list of items that correspond to an object is generally done by using a new table and a foreign key to link both records.\nHowever, in the case of simple data types like text and integer we can use text[] and integer[] respectively.\nThis isn’t only simpler but it doesn’t require to create a new table and one new row per slice element.\n For further information, see the official docs.\n Let’s take a look at how to store a string slice in PostgreSQL with Go:\n// Package \"github.com/lib/pq\" required // // `keys` field is of type text[] func insertKeys(db *sql.DB, id string, keys pq.StringArray) error { \t_, err := db.Exec(\"INSERT INTO users (keys) VALUES ($2) WHERE id=$1\", id, keys) \tif err != nil { \treturn err \t} \treturn nil }  // pq.StringArray underlying type is []string func getKeys(db *sql.DB, id string) ([]string, error) { \trow := db.QueryRow(\"SELECT keys FROM users WHERE id=$1\", id) \tvar keys pq.StringArray \tif err := row.Scan(\u0026keys); err != nil { \treturn nil, err \t} \treturn keys, nil } Update only what changes The COALESCE function we’ve seen above is also handy for updating only the fields that the user specified a value for.\nConsider a scenario where we want the users to update a post’s content, the image or both.\nWe will use string pointers for our struct fields to distinguish null values, otherwise we wouldn’t know whether the user wants to store and empty string or to not change anything.\ntype UpdatePost struct { \tContent *string \tImage *string }  func updatePost(db *sql.DB, id string, post UpdatePost) error { \tq := `UPDATE posts SET content = COALESCE($2, content) image = COALESCE($3, image) WHERE id = $1` \t_, err := db.Exec(q, id, post.Content, post.Image) \treturn err } This way, if the user updated the content only, COALESCE will detect that the image argument is null and thus use the already stored value, leaving the field as it was prior to the update.\nBatch inserts Inserting multiple records at once is typically an expensive operation and that’s why we need an optimal solution for it.\nBulk imports - COPY command The COPY command is optimized for loading large numbers of rows; it is less flexible than INSERT, but incurs significantly less overhead for large data loads.\nSince it’s a single command, there is no need to disable autocommit if you use this method to populate a table. Also, it stops operation at the first error.\nCOPY FROM will invoke any triggers and check constraints on the destination table. However, it will not invoke rules.\nfunc bulkImports(db *sql.DB, posts []Post) error { \tstmt, err := db.Prepare(\"COPY posts (id, title, content) FROM STDIN\") \tif err != nil { \treturn err \t} \tdefer stmt.Close() \t\tfor _, post := range posts { \t_, err := stmt.ExecContext(ctx, post.ID, post.Title, post.Content) \tif err != nil { \treturn err \t} \t} \t\t// Flush buffered data \tif _, err := stmt.ExecContext(ctx); err != nil { \treturn err \t}  \treturn nil } Query building Another way to insert multiple records in one call is to build a query containing a set of arguments for each of them.\nFor example:\n\"INSERT INTO posts (id, title, content, image) VALUES ($1, $2, $3), ($4, $5, $6)\"  Take a look at the implementation here.\nNote that the maximum number of arguments supported by VALUES is 1000.\n Pagination Pagination is the process of dividing a document into discrete pages.\nIn programming, we provide our clients the possibility to paginate the list of results by using a cursor.\nA cursor could be thought as a flag that divides already seen records and not yet seen ones.\nOn each request, we return a new cursor (which may be an id or an encoded string) so the user can ask for more records without getting repeated ones.\nHere are two common ways of implementing pagination in SQL that are safe from injection:\nUsing UUIDs We select the posts that were created before the date passed, in case the date matches with the creation timestamp, the ID is compared.\n In this case, the cursor is generally an encoded string that contains both the ID and the creation timestamp.\n // Requires the table to have a field with a timestamp of the value creation id := \"3c0217ac-503f-45dc-b150-0b1618155d3d\" createdAt := time.Now() q := `SELECT * FROM posts WHERE created_at ORDER BY created_at DESC, id DESC LIMIT 5` db.Query(q, createdAt, id) Using lexicographically sortable IDs Since the IDs are already sorted there is no need to compare the creation date, the ID is the cursor itself.\nid := \"01FMA344NAGPSKF4TNAXMC06KS\" db.Query(\"SELECT * FROM posts WHERE id , id) Prepared statements When we make a query using db.Query(), a prepared statement is built underneath to run it, but it’s used only once.\nIf we were to execute the same query multiple times, we would be wasting resources as the prepared statement would be compiled on each iteration.\nIn order to fix this, we can use prepared statements, they allow us to compile the query with parameterized arguments separetely and then use that statement n times.\nAnother advantage is that multiple queries or executions may be run concurrently from the returned statement.\nstmt, err := db.Prepare(\"SELECT * FROM posts WHERE id=$1\") if err != nil { \treturn err } // Remember to always close the statement when // it's no longer needed to free up resources defer stmt.Close()  for _, id := range postIDs { \tif _, err := stmt.QueryRowContext(ctx, id); err != nil { \treturn err \t} \t// Scan post } Stored procedures Stored procedures are user-defined functions that can be stored in the database for later reuse, they can contain parameters but can’t return anything.\nAs simple as that, let’s implement a stored procedure for updating a post’s likes:\n// Check if the user already liked the post, if yes, remove the like, if not, add it. q := `CREATE OR REPLACE PROCEDURE likePost(postID text, userID text) AS $$ BEGIN IF EXISTS (SELECT 1 FROM post_likes WHERE post_id=postID AND user_id=userID) THEN DELETE FROM post_likes WHERE post_id=postID AND user_id=userID; ELSE INSERT INTO post_likes (post_id, user_id) VALUES (postID, userID); END IF; END $$ LANGUAGE plpgsql` db.ExecContext(ctx, q) We can execute it doing:\ndb.ExecContext(ctx, \"CALL likePost($1, $2)\", postID, userID) Parting words I hope you found this post useful, in the next one we will be taking a look at transactions (propagation using context and isolation levels), dynamic scanning, full text search, recursive queries and much more.\n","wordCount":"1711","inLanguage":"en","datePublished":"2022-01-17T00:00:00Z","dateModified":"2022-01-17T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://ggp1.github.io/posts/mastering_sql_with_go_p1/"},"publisher":{"@type":"Organization","name":"Gastón Palomeque","logo":{"@type":"ImageObject","url":"https://ggp1.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><noscript><style type=text/css>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><header class=header><nav class=nav><div class=logo><a href=https://ggp1.github.io/ accesskey=h title=" (Alt + H)"><img src=/apple-touch-icon.png alt=logo aria-label=logo height=38></a>
-<span class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></span></div><ul id=menu><li><a href=https://ggp1.github.io/ title=home><span>home</span></a></li><li><a href=https://ggp1.github.io/projects/ title=projects><span>projects</span></a></li><li><a href=https://ggp1.github.io/posts/ title=posts><span>posts</span></a></li><li><a href=https://ggp1.github.io/about/ title=about><span>about</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://ggp1.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://ggp1.github.io/posts/>Posts</a></div><h1 class=post-title>Mastering SQL with Go - Part 1</h1><div class=post-meta>January 17, 2022</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><div class=details>Table of Contents</div></summary><div class=inner><ul><li><a href=#connection-tuning aria-label="Connection tuning">Connection tuning</a></li><li><a href=#scan-null-values aria-label="Scan null values">Scan null values</a><ul><li><a href=#coalesce aria-label=COALESCE>COALESCE</a></li><li><a href=#standard-library-types aria-label="Standard library types">Standard library types</a></li><li><a href=#pointers aria-label=Pointers>Pointers</a></li></ul></li><li><a href=#storing-slices aria-label="Storing slices">Storing slices</a></li><li><a href=#update-only-what-changes aria-label="Update only what changes">Update only what changes</a></li><li><a href=#batch-inserts aria-label="Batch inserts">Batch inserts</a><ul><li><a href=#bulk-imports---copy-command aria-label="Bulk imports - COPY command">Bulk imports - COPY command</a></li><li><a href=#query-building aria-label="Query building">Query building</a></li></ul></li><li><a href=#pagination aria-label=Pagination>Pagination</a><ul><li><a href=#using-uuids aria-label="Using UUIDs">Using UUIDs</a></li><li><a href=#using-lexicographically-sortable-ids aria-label="Using lexicographically sortable IDs">Using lexicographically sortable IDs</a></li></ul></li><li><a href=#prepared-statements aria-label="Prepared statements">Prepared statements</a></li><li><a href=#stored-procedures aria-label="Stored procedures">Stored procedures</a></li><li><a href=#parting-words aria-label="Parting words">Parting words</a></li></ul></div></details></div><div class=post-content><p>I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.</p><p>This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package <a href=https://github.com/golang/go/tree/master/src/database/sql><code>database/sql</code></a>.</p><p>Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).</p><h3 id=connection-tuning>Connection tuning<a hidden class=anchor aria-hidden=true href=#connection-tuning>#</a></h3><p>When we connect to an SQL database through a driver and using the <code>database/sql</code> package we get the <a href=https://pkg.go.dev/database/sql#DB><code>sql.DB</code></a> database handle, which manages a pool of active connections that are safe for concurrent use, creating new ones when required.</p><blockquote><p>To perform actions on a dedicated connection, we can use <a href=https://pkg.go.dev/database/sql#Conn><code>sql.Conn</code></a>.</p></blockquote><p>The management of these connections can be personalized by using the following methods:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#6272a4>// Set the maximum number of concurrent open connections.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// There is no limit defined by default.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// After the limit is passed, new datatabase operations will block 
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// until there&#39;s an available connection.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>db.<span style=color:#50fa7b>SetMaxOpenConns</span>(n <span style=color:#8be9fd>int</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4>// Set a connection&#39;s maximum life time.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// Default is 2.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// Increasing this value will improve the database performance at the
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// cost of consuming more memory to keep the connections alive.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>db.<span style=color:#50fa7b>SetMaxIdleConns</span>(n <span style=color:#8be9fd>int</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4>// Set a connection&#39;s maximum life time, once the time is reached it 
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// cannot be used again.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// By default connections are reused forever.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// Every one second the `database/sql` package removes expired connections 
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// from the pool.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>db.<span style=color:#50fa7b>SetConnMaxLifetime</span>(d time.Duration)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4>// Set a connection&#39;s maximum idle time.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// No value is set by default, connections may be idle their entire lifetime.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>db.<span style=color:#50fa7b>SetConnMaxIdleTime</span>(d time.Duration) 
-</span></span></code></pre></div><p>The recommended values for these configurations depend on the type of application the database is used for, it may be convenient to specify and tweak them on the fly based on metrics gathered.</p><p>I personally prefer to begin limiting the maximum number and time of <strong>idle</strong> connections to avoid holding them for a long period of time (i.e. a burst of requests may open many connections that later won&rsquo;t be used anymore).</p><blockquote><p>A simple and useful way of getting more information about the database connection is the <a href=https://pkg.go.dev/database/sql#DB.Stats><code>db.Stats()</code></a> method.</p></blockquote><h3 id=scan-null-values>Scan null values<a hidden class=anchor aria-hidden=true href=#scan-null-values>#</a></h3><p>If we attempt to scan a null value into a non-pointer variable we will receive an error saying that a null value can&rsquo;t be scanned into a Go type. There are (at least) three ways to address this problem:</p><h4 id=coalesce>COALESCE<a hidden class=anchor aria-hidden=true href=#coalesce>#</a></h4><p>The <em>COALESCE</em> function takes <em>n</em> arguments and returns the first one that is not null, hence, we can use the targeted field as the first argument and then a default value to be returned when the first one is null.</p><blockquote><p>COALESCE provides the same functionality as NVL or IFNULL from the SQL-standard.</p></blockquote><p>The query would be as follows:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f1fa8c>&#34;SELECT COALESCE(description, &#39;&#39;) as description FROM posts WHERE id=&#39;sample&#34;</span>
-</span></span></code></pre></div><h4 id=standard-library-types>Standard library types<a hidden class=anchor aria-hidden=true href=#standard-library-types>#</a></h4><p>The <code>database/sql</code> package has various types for scanning potentially null values (<code>sql.NullString</code>, <code>sql.NullInt</code>, <code>sql.NullBool</code>, etc.)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#6272a4>// SELECT description FROM posts WHERE id=&#39;sample&#39;;
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>scanString</span>(row <span style=color:#ff79c6>*</span>sql.Row) (<span style=color:#8be9fd>string</span>, <span style=color:#8be9fd>error</span>) {
-</span></span><span style=display:flex><span>	<span style=color:#8be9fd;font-style:italic>var</span> nullable sql.NullString
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>:=</span> row.<span style=color:#50fa7b>Scan</span>(<span style=color:#ff79c6>&amp;</span>nullable); err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> <span style=color:#f1fa8c>&#34;&#34;</span>, err
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#6272a4>// We can check if the value is null by using the nullable.Valid field.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>	<span style=color:#ff79c6>if</span> !nullable.Valid {
-</span></span><span style=display:flex><span>		<span style=color:#6272a4>// nullable is null
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>	}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> nullable.String, <span style=color:#ff79c6>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h4 id=pointers>Pointers<a hidden class=anchor aria-hidden=true href=#pointers>#</a></h4><p>The last option, and probably the most used one, is to declare a pointer that will be equal to <code>nil</code> in case there is no value stored.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#6272a4>// SELECT description FROM posts WHERE id=&#39;sample&#39;;
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>scanString</span>(row <span style=color:#ff79c6>*</span>sql.Row) (<span style=color:#ff79c6>*</span><span style=color:#8be9fd>string</span>, <span style=color:#8be9fd>error</span>) {
-</span></span><span style=display:flex><span>	<span style=color:#8be9fd;font-style:italic>var</span> nullable <span style=color:#ff79c6>*</span><span style=color:#8be9fd>string</span>
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>:=</span> row.<span style=color:#50fa7b>Scan</span>(<span style=color:#ff79c6>&amp;</span>nullable); err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> <span style=color:#f1fa8c>&#34;&#34;</span>, err
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> nullable, <span style=color:#ff79c6>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=storing-slices>Storing slices<a hidden class=anchor aria-hidden=true href=#storing-slices>#</a></h3><p>Storing a list of items that correspond to an object is generally done by using a new table and a foreign key to link both records.</p><p>However, in the case of simple data types like text and integer we can use <code>text[]</code> and <code>integer[]</code> respectively.</p><p>This isn&rsquo;t only simpler but it doesn&rsquo;t require to create a new table and one new row per slice element.</p><blockquote><p>For further information, see the <a href=https://www.postgresql.org/docs/14/arrays.html>official docs</a>.</p></blockquote><p>Let&rsquo;s take a look at how to store a string slice in PostgreSQL with Go:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#6272a4>// Package &#34;github.com/lib/pq&#34; required
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>//
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// `keys` field is of type text[]
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>insertKeys</span>(db <span style=color:#ff79c6>*</span>sql.DB, id <span style=color:#8be9fd>string</span>, keys pq.StringArray) <span style=color:#8be9fd>error</span> {
-</span></span><span style=display:flex><span>	_, err <span style=color:#ff79c6>:=</span> db.<span style=color:#50fa7b>Exec</span>(<span style=color:#f1fa8c>&#34;INSERT INTO users (keys) VALUES ($2) WHERE id=$1&#34;</span>, id, keys)
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> err
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> <span style=color:#ff79c6>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#6272a4>// pq.StringArray underlying type is []string
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>getKeys</span>(db <span style=color:#ff79c6>*</span>sql.DB, id <span style=color:#8be9fd>string</span>) ([]<span style=color:#8be9fd>string</span>, <span style=color:#8be9fd>error</span>) {
-</span></span><span style=display:flex><span>	row <span style=color:#ff79c6>:=</span> db.<span style=color:#50fa7b>QueryRow</span>(<span style=color:#f1fa8c>&#34;SELECT keys FROM users WHERE id=$1&#34;</span>, id)
-</span></span><span style=display:flex><span>	<span style=color:#8be9fd;font-style:italic>var</span> keys pq.StringArray
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>:=</span> row.<span style=color:#50fa7b>Scan</span>(<span style=color:#ff79c6>&amp;</span>keys); err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> <span style=color:#ff79c6>nil</span>, err
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> keys, <span style=color:#ff79c6>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=update-only-what-changes>Update only what changes<a hidden class=anchor aria-hidden=true href=#update-only-what-changes>#</a></h3><p>The <a href=#coalesce>COALESCE</a> function we&rsquo;ve seen above is also handy for updating only the fields that the user specified a value for.</p><p>Consider a scenario where we want the users to update a post&rsquo;s content, the image or both.</p><p>We will use string pointers for our struct fields to distinguish null values, otherwise we wouldn&rsquo;t know whether the user wants to store and empty string or to not change anything.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>type</span> UpdatePost <span style=color:#8be9fd;font-style:italic>struct</span> {
-</span></span><span style=display:flex><span>	Content <span style=color:#ff79c6>*</span><span style=color:#8be9fd>string</span>
-</span></span><span style=display:flex><span>	Image <span style=color:#ff79c6>*</span><span style=color:#8be9fd>string</span>
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>updatePost</span>(db <span style=color:#ff79c6>*</span>sql.DB, id <span style=color:#8be9fd>string</span>, post UpdatePost) <span style=color:#8be9fd>error</span> {
-</span></span><span style=display:flex><span>	q <span style=color:#ff79c6>:=</span> <span style=color:#f1fa8c>`UPDATE posts SET 
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	content = COALESCE($2, content)
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	image = COALESCE($3, image)
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	WHERE id = $1`</span>
-</span></span><span style=display:flex><span>	_, err <span style=color:#ff79c6>:=</span> db.<span style=color:#50fa7b>Exec</span>(q, id, post.Content, post.Image)
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> err
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>This way, if the user updated the content only, COALESCE will detect that the image argument is null and thus use the already stored value, leaving the field as it was prior to the update.</p><h3 id=batch-inserts>Batch inserts<a hidden class=anchor aria-hidden=true href=#batch-inserts>#</a></h3><p>Inserting multiple records at once is typically an expensive operation and that&rsquo;s why we need an optimal solution for it.</p><h4 id=bulk-imports---copy-command>Bulk imports - COPY command<a hidden class=anchor aria-hidden=true href=#bulk-imports---copy-command>#</a></h4><p>The <code>COPY</code> command is optimized for loading large numbers of rows; it is less flexible than <code>INSERT</code>, but incurs significantly less overhead for large data loads.</p><p>Since it&rsquo;s a single command, there is no need to disable autocommit if you use this method to populate a table. Also, it stops operation at the first error.</p><p><code>COPY FROM</code> will invoke any triggers and check constraints on the destination table. However, it will not invoke rules.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>func</span> <span style=color:#50fa7b>bulkImports</span>(db <span style=color:#ff79c6>*</span>sql.DB, posts []Post) <span style=color:#8be9fd>error</span> {
-</span></span><span style=display:flex><span>	stmt, err <span style=color:#ff79c6>:=</span> db.<span style=color:#50fa7b>Prepare</span>(<span style=color:#f1fa8c>&#34;COPY posts (id, title, content) FROM STDIN&#34;</span>)
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> err
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>defer</span> stmt.<span style=color:#50fa7b>Close</span>()
-</span></span><span style=display:flex><span>	
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>for</span> _, post <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>range</span> posts {
-</span></span><span style=display:flex><span>		_, err <span style=color:#ff79c6>:=</span> stmt.<span style=color:#50fa7b>ExecContext</span>(ctx, post.ID, post.Title, post.Content)
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>			<span style=color:#ff79c6>return</span> err
-</span></span><span style=display:flex><span>		}
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	
-</span></span><span style=display:flex><span>	<span style=color:#6272a4>// Flush buffered data
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>	<span style=color:#ff79c6>if</span> _, err <span style=color:#ff79c6>:=</span> stmt.<span style=color:#50fa7b>ExecContext</span>(ctx); err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> err
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> <span style=color:#ff79c6>nil</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h4 id=query-building>Query building<a hidden class=anchor aria-hidden=true href=#query-building>#</a></h4><p>Another way to insert multiple records in one call is to build a query containing a set of arguments for each of them.</p><p>For example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f1fa8c>&#34;INSERT INTO posts (id, title, content, image) VALUES ($1, $2, $3), ($4, $5, $6)&#34;</span>
-</span></span></code></pre></div><blockquote><p>Take a look at the implementation <a href=https://stackoverflow.com/questions/12486436/how-do-i-batch-sql-statements-with-package-database-sql>here</a>.</p><p>Note that the maximum number of arguments supported by <code>VALUES</code> is 1000.</p></blockquote><h3 id=pagination>Pagination<a hidden class=anchor aria-hidden=true href=#pagination>#</a></h3><p>Pagination is the process of dividing a document into discrete pages.</p><p>In programming, we provide our clients the possibility to paginate the list of results by using a cursor.</p><p>A cursor could be thought as a flag that divides already seen records and not yet seen ones.</p><p>On each request, we return a new cursor (which may be an id or an encoded string) so the user can ask for more records without getting repeated ones.</p><p>Here are two common ways of implementing pagination in SQL that are safe from injection:</p><h4 id=using-uuids>Using UUIDs<a hidden class=anchor aria-hidden=true href=#using-uuids>#</a></h4><p>We select the posts that were created before the date passed, in case the date matches with the creation timestamp, the ID is compared.</p><blockquote><p>In this case, the cursor is generally an encoded string that contains both the ID and the creation timestamp.</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#6272a4>// Requires the table to have a field with a timestamp of the value creation
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>id <span style=color:#ff79c6>:=</span> <span style=color:#f1fa8c>&#34;3c0217ac-503f-45dc-b150-0b1618155d3d&#34;</span>
-</span></span><span style=display:flex><span>createdAt <span style=color:#ff79c6>:=</span> time.<span style=color:#50fa7b>Now</span>()
-</span></span><span style=display:flex><span>q <span style=color:#ff79c6>:=</span> <span style=color:#f1fa8c>`SELECT * FROM posts WHERE 
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>created_at &lt; $1 OR (created_at = $1 AND id &lt; $2) 
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>ORDER BY created_at DESC, id DESC LIMIT 5`</span>
-</span></span><span style=display:flex><span>db.<span style=color:#50fa7b>Query</span>(q, createdAt, id)
-</span></span></code></pre></div><h4 id=using-lexicographically-sortable-ids>Using lexicographically sortable IDs<a hidden class=anchor aria-hidden=true href=#using-lexicographically-sortable-ids>#</a></h4><p>Since the IDs are already sorted there is no need to compare the creation date, the ID is the cursor itself.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>id <span style=color:#ff79c6>:=</span> <span style=color:#f1fa8c>&#34;01FMA344NAGPSKF4TNAXMC06KS&#34;</span>
-</span></span><span style=display:flex><span>db.<span style=color:#50fa7b>Query</span>(<span style=color:#f1fa8c>&#34;SELECT * FROM posts WHERE id &lt; $1 ORDER BY id DESC LIMIT 5&#34;</span>, id)
-</span></span></code></pre></div><h3 id=prepared-statements>Prepared statements<a hidden class=anchor aria-hidden=true href=#prepared-statements>#</a></h3><p>When we make a query using <a href=https://pkg.go.dev/database/sql#DB.Query><code>db.Query()</code></a>, a prepared statement is built underneath to run it, but it&rsquo;s used only once.</p><p>If we were to execute the same query multiple times, we would be wasting resources as the prepared statement would be compiled on each iteration.</p><p>In order to fix this, we can use <em>prepared statements</em>, they allow us to compile the query with parameterized arguments separetely and then use that statement <em>n</em> times.</p><p>Another advantage is that multiple queries or executions may be run concurrently from the returned statement.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>stmt, err <span style=color:#ff79c6>:=</span> db.<span style=color:#50fa7b>Prepare</span>(<span style=color:#f1fa8c>&#34;SELECT * FROM posts WHERE id=$1&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#ff79c6>if</span> err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>return</span> err
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#6272a4>// Remember to always close the statement when 
-</span></span></span><span style=display:flex><span><span style=color:#6272a4>// it&#39;s no longer needed to free up resources
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span><span style=color:#ff79c6>defer</span> stmt.<span style=color:#50fa7b>Close</span>()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ff79c6>for</span> _, id <span style=color:#ff79c6>:=</span> <span style=color:#ff79c6>range</span> postIDs {
-</span></span><span style=display:flex><span>	<span style=color:#ff79c6>if</span> _, err <span style=color:#ff79c6>:=</span> stmt.<span style=color:#50fa7b>QueryRowContext</span>(ctx, id); err <span style=color:#ff79c6>!=</span> <span style=color:#ff79c6>nil</span> {
-</span></span><span style=display:flex><span>		<span style=color:#ff79c6>return</span> err
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#6272a4>// Scan post
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>}
-</span></span></code></pre></div><h3 id=stored-procedures>Stored procedures<a hidden class=anchor aria-hidden=true href=#stored-procedures>#</a></h3><p>Stored procedures are user-defined functions that can be stored in the database for later reuse, they can contain parameters but can&rsquo;t return anything.</p><p>As simple as that, let&rsquo;s implement a stored procedure for updating a post&rsquo;s likes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#6272a4>// Check if the user already liked the post, if yes, remove the like, if not, add it.
-</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>q <span style=color:#ff79c6>:=</span> <span style=color:#f1fa8c>`CREATE OR REPLACE PROCEDURE likePost(postID text, userID text) AS $$
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	BEGIN
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>		IF EXISTS (SELECT 1 FROM post_likes WHERE post_id=postID AND user_id=userID) THEN
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	   		DELETE FROM post_likes WHERE post_id=postID AND user_id=userID;
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	   	ELSE
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	   		INSERT INTO post_likes (post_id, user_id) VALUES (postID, userID);
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	   	END IF;
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>	END 
-</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>$$ LANGUAGE plpgsql`</span>
-</span></span><span style=display:flex><span>db.<span style=color:#50fa7b>ExecContext</span>(ctx, q)
-</span></span></code></pre></div><p>We can execute it doing:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>db.<span style=color:#50fa7b>ExecContext</span>(ctx, <span style=color:#f1fa8c>&#34;CALL likePost($1, $2)&#34;</span>, postID, userID)
-</span></span></code></pre></div><h3 id=parting-words>Parting words<a hidden class=anchor aria-hidden=true href=#parting-words>#</a></h3><p>I hope you found this post useful, in the next one we will be taking a look at transactions (propagation using context and isolation levels), dynamic scanning, full text search, recursive queries and much more.</p></div><footer class=post-footer><nav class=paginav><a class=next href=https://ggp1.github.io/posts/rn_generic_list/><span class=title>Next Page »</span><br><span>React Native generic list</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2022 &#183; Gastón Palomeque</span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)"><button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></button></a>
-<script>let menu=document.getElementById("menu");menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(t){t.preventDefault();var e=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView({behavior:"smooth"}),e==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${e}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>
+Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).">
+
+
+<link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/footer.css" media="all">
+
+
+<link rel="stylesheet" href="/css/theme.css" media="all">
+
+<style>
+    :root {
+        --text-color: #000;
+        --text-secondary-color: #6c757d;
+        --text-link-color: #4d7fb5;
+        --background-color: #eaedf0;
+        --secondary-background-color: #64ffda1a;
+        --primary-color: #4d7fb5;
+        --secondary-color: #f8f9fa;
+		--btn-background-color: #9cc3ea8f;
+
+         
+        --text-color-dark: #e4e6eb;
+        --text-secondary-color-dark: #b0b3b8;
+        --text-link-color-dark: #ffffff;
+        --background-color-dark: #18191a;
+        --secondary-background-color-dark: #212529;
+        --primary-color-dark: #ffffff;
+        --secondary-color-dark: #212529;
+		--btn-background-color-dark: #212529;
+    }
+    body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    html {
+        background-color: var(--background-color) !important;
+    }
+
+    body::-webkit-scrollbar {
+        height: 0px;
+        width: 8px;
+        background-color: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: #b0b0b0;
+        outline: 1px solid var(--background-color);
+    }
+
+    #search-content::-webkit-scrollbar {
+        width: .5em;
+        height: .1em;
+        background-color: var(--background-color);
+    }
+</style>
+
+
+
+<meta name="description" content="">
+<link rel="stylesheet" href="/css/single.css">
+
+
+<script defer src="/fontawesome-6/all-6.4.2.js"></script>
+
+
+  
+  
+
+  <title>
+Mastering SQL with Go - Part 1 | Gastón Palomeque
+
+  </title>
+</head>
+
+<body class="light">
+  
+  
+<script>
+    let localStorageValue = localStorage.getItem("pref-theme");
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    switch (localStorageValue) {
+        case "dark":
+            document.body.classList.add('dark');
+            break;
+        case "light":
+            document.body.classList.remove('dark');
+            break;
+        default:
+            if (mediaQuery) {
+                document.body.classList.add('dark');
+            }
+            break;
+    }
+</script>
+
+
+
+
+<script>
+    var prevScrollPos = window.pageYOffset;
+    window.addEventListener("scroll", function showHeaderOnScroll() {
+        let profileHeaderElem = document.getElementById("profileHeader");
+        let currentScrollPos = window.pageYOffset;
+        let resetHeaderStyle = false;
+        let showNavBarOnScrollUp =  true ;
+        let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
+        if (showNavBar) {
+            profileHeaderElem.classList.add("showHeaderOnTop");
+        } else {
+            resetHeaderStyle = true;
+        }
+        if(currentScrollPos === 0) {
+            resetHeaderStyle = true;
+        }
+        if(resetHeaderStyle) {
+            profileHeaderElem.classList.remove("showHeaderOnTop");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+</script>
+
+
+
+<header id="profileHeader">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
+        <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
+            
+            <a class="navbar-brand primary-font text-wrap" href="/">
+                
+                <img src="/favicon.ico" width="30" height="30"
+                    class="d-inline-block align-top">
+                
+                
+            </a>
+
+            
+                <div>
+                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Search'
+                        aria-label="Search" oninput="searchOnChange(event)">
+                </div>
+            
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                    <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                </svg>
+            </button>
+
+            
+            <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    
+                        <li class="nav-item navbar-text d-block d-md-none">
+                            <div class="nav-link">
+                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Search' aria-label="Search" oninput="searchOnChange(event)">
+                            </div>
+                        </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#about" aria-label="about">
+                            About
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#experience"
+                            aria-label="experience">
+                            Experience
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#projects"
+                            aria-label="projects">
+                            Projects
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/posts/" title="">
+                            
+                            Posts
+                        </a>
+                    </li>
+                    
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        
+                        <div class="text-center">
+                            <button id="theme-toggle">
+                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg>
+                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          <div class="title mb-5">
+            <h1 class="text-center mb-4">Mastering SQL with Go - Part 1</h1>
+            <div class="text-center">
+              
+              Nov 24, 2024
+
+              
+            </div>
+          </div>
+          
+          <div class="featured-image">
+            <img class="img-fluid mx-auto d-block" src="/images/sql_go_p1.png" alt="Mastering SQL with Go - Part 1">
+          </div>
+          
+          <article class="page-content  p-2">
+          <p>I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.</p>
+<p>This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package <a href="https://github.com/golang/go/tree/master/src/database/sql"><code>database/sql</code></a>.</p>
+<p>Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).</p>
+<h2 id="connection-tuning">Connection tuning</h2>
+<p>When we connect to an SQL database through a driver and using the <code>database/sql</code> package we get the <a href="https://pkg.go.dev/database/sql#DB"><code>sql.DB</code></a> database handle, which manages a pool of active connections that are safe for concurrent use, creating new ones when required.</p>
+<blockquote>
+<p>To perform actions on a dedicated connection, we can use <a href="https://pkg.go.dev/database/sql#Conn"><code>sql.Conn</code></a>.</p></blockquote>
+<p>The management of these connections can be personalized by using the following methods:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#7f848e">// Set the maximum number of concurrent open connections.</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// There is no limit defined by default.</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// After the limit is passed, new datatabase operations will block </span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// until there&#39;s an available connection.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">SetMaxOpenConns</span>(<span style="color:#e06c75">n</span> <span style="color:#e5c07b">int</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// Set a connection&#39;s maximum life time.</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// Default is 2.</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// Increasing this value will improve the database performance at the</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// cost of consuming more memory to keep the connections alive.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">SetMaxIdleConns</span>(<span style="color:#e06c75">n</span> <span style="color:#e5c07b">int</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// Set a connection&#39;s maximum life time, once the time is reached it </span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// cannot be used again.</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// By default connections are reused forever.</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// Every one second the `database/sql` package removes expired connections </span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// from the pool.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">SetConnMaxLifetime</span>(<span style="color:#e06c75">d</span> <span style="color:#e06c75">time</span>.<span style="color:#e06c75">Duration</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// Set a connection&#39;s maximum idle time.</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// No value is set by default, connections may be idle their entire lifetime.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">SetConnMaxIdleTime</span>(<span style="color:#e06c75">d</span> <span style="color:#e06c75">time</span>.<span style="color:#e06c75">Duration</span>) 
+</span></span></code></pre></div><p>The recommended values for these configurations depend on the type of application the database is used for, it may be convenient to specify and tweak them on the fly based on metrics gathered.</p>
+<p>I personally prefer to begin limiting the maximum number and time of <strong>idle</strong> connections to avoid holding them for a long period of time (i.e. a burst of requests may open many connections that later won&rsquo;t be used anymore).</p>
+<blockquote>
+<p>A simple and useful way of getting more information about the database connection is the <a href="https://pkg.go.dev/database/sql#DB.Stats"><code>db.Stats()</code></a> method.</p></blockquote>
+<h2 id="scanning-null-values">Scanning null values</h2>
+<p>If we attempt to scan a null value into a non-pointer variable we will receive an error saying that a null value can&rsquo;t be scanned into a Go type. There are (at least) three ways to address this problem:</p>
+<h3 id="coalesce">COALESCE</h3>
+<p>The <em>COALESCE</em> function takes <em>n</em> arguments and returns the first one that is not null, hence, we can use the targeted field as the first argument and then a default value to be returned when the first one is null.</p>
+<p>The query would be as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#98c379">&#34;SELECT COALESCE(description, &#39;&#39;) as description FROM posts WHERE id=&#39;sample&#34;</span>
+</span></span></code></pre></div><h3 id="standard-library-types">Standard library types</h3>
+<p>The <code>database/sql</code> package has various types for scanning potentially null values (<code>sql.NullString</code>, <code>sql.NullInt</code>, <code>sql.NullBool</code>, etc.)</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#7f848e">// SELECT description FROM posts WHERE id=&#39;sample&#39;;</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">scanString</span>(<span style="color:#e06c75">row</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">sql</span>.<span style="color:#e06c75">Row</span>) (<span style="color:#e5c07b">string</span>, <span style="color:#e5c07b">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">var</span> <span style="color:#e06c75">nullable</span> <span style="color:#e06c75">sql</span>.<span style="color:#e06c75">NullString</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">row</span>.<span style="color:#61afef;font-weight:bold">Scan</span>(<span style="color:#56b6c2">&amp;</span><span style="color:#e06c75">nullable</span>); <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">return</span> <span style="color:#98c379">&#34;&#34;</span>, <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#7f848e">// We can check if the value is null by using the nullable.Valid field.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> !<span style="color:#e06c75">nullable</span>.<span style="color:#e06c75">Valid</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#7f848e">// nullable is null</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#e06c75">nullable</span>.<span style="color:#e06c75">String</span>, <span style="color:#e5c07b">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="pointers">Pointers</h3>
+<p>The last option, and probably the most used one, is to declare a pointer that will be equal to <code>nil</code> in case there is no value stored.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#7f848e">// SELECT description FROM posts WHERE id=&#39;sample&#39;;</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">scanString</span>(<span style="color:#e06c75">row</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">sql</span>.<span style="color:#e06c75">Row</span>) (<span style="color:#56b6c2">*</span><span style="color:#e5c07b">string</span>, <span style="color:#e5c07b">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">var</span> <span style="color:#e06c75">nullable</span> <span style="color:#56b6c2">*</span><span style="color:#e5c07b">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">row</span>.<span style="color:#61afef;font-weight:bold">Scan</span>(<span style="color:#56b6c2">&amp;</span><span style="color:#e06c75">nullable</span>); <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">return</span> <span style="color:#98c379">&#34;&#34;</span>, <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#e06c75">nullable</span>, <span style="color:#e5c07b">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="storing-slices">Storing slices</h2>
+<p>Storing a list of items that correspond to an object is generally done by using a new table and a foreign key to link both records.</p>
+<p>However, in the case of simple data types like text and integer we can use <code>text[]</code> and <code>integer[]</code> respectively.</p>
+<p>This isn&rsquo;t only simpler but it doesn&rsquo;t require to create a new table and one new row per slice element.</p>
+<blockquote>
+<p>For further information, see the <a href="https://www.postgresql.org/docs/14/arrays.html">official docs</a>.</p></blockquote>
+<p>Let&rsquo;s take a look at how to store a string slice in PostgreSQL with Go:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#7f848e">// Package &#34;github.com/lib/pq&#34; required</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">//</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// `keys` field is of type text[]</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">insertKeys</span>(<span style="color:#e06c75">db</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">sql</span>.<span style="color:#e06c75">DB</span>, <span style="color:#e06c75">id</span> <span style="color:#e5c07b">string</span>, <span style="color:#e06c75">keys</span> <span style="color:#e06c75">pq</span>.<span style="color:#e06c75">StringArray</span>) <span style="color:#e5c07b">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">_</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">Exec</span>(<span style="color:#98c379">&#34;INSERT INTO users (keys) VALUES ($2) WHERE id=$1&#34;</span>, <span style="color:#e06c75">id</span>, <span style="color:#e06c75">keys</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">return</span> <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#e5c07b">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// pq.StringArray underlying type is []string</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">getKeys</span>(<span style="color:#e06c75">db</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">sql</span>.<span style="color:#e06c75">DB</span>, <span style="color:#e06c75">id</span> <span style="color:#e5c07b">string</span>) ([]<span style="color:#e5c07b">string</span>, <span style="color:#e5c07b">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">row</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">QueryRow</span>(<span style="color:#98c379">&#34;SELECT keys FROM users WHERE id=$1&#34;</span>, <span style="color:#e06c75">id</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">var</span> <span style="color:#e06c75">keys</span> <span style="color:#e06c75">pq</span>.<span style="color:#e06c75">StringArray</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">row</span>.<span style="color:#61afef;font-weight:bold">Scan</span>(<span style="color:#56b6c2">&amp;</span><span style="color:#e06c75">keys</span>); <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">return</span> <span style="color:#e5c07b">nil</span>, <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#e06c75">keys</span>, <span style="color:#e5c07b">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="update-only-what-changes">Update only what changes</h2>
+<p>The <a href="#coalesce">COALESCE</a> function we&rsquo;ve seen above is also handy for updating only the fields that the user specified a value for.</p>
+<p>Consider a scenario where we want the users to update a post&rsquo;s content, the image or both.</p>
+<p>We will use string pointers for our struct fields to distinguish null values, otherwise we wouldn&rsquo;t know whether the user wants to store and empty string or to not change anything.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">type</span> <span style="color:#e06c75">UpdatePost</span> <span style="color:#c678dd">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">Content</span> <span style="color:#56b6c2">*</span><span style="color:#e5c07b">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">Image</span> <span style="color:#56b6c2">*</span><span style="color:#e5c07b">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">updatePost</span>(<span style="color:#e06c75">db</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">sql</span>.<span style="color:#e06c75">DB</span>, <span style="color:#e06c75">id</span> <span style="color:#e5c07b">string</span>, <span style="color:#e06c75">post</span> <span style="color:#e06c75">UpdatePost</span>) <span style="color:#e5c07b">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">q</span> <span style="color:#56b6c2">:=</span> <span style="color:#98c379">`UPDATE posts SET 
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	content = COALESCE($2, content)
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	image = COALESCE($3, image)
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	WHERE id = $1`</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">_</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">Exec</span>(<span style="color:#e06c75">q</span>, <span style="color:#e06c75">id</span>, <span style="color:#e06c75">post</span>.<span style="color:#e06c75">Content</span>, <span style="color:#e06c75">post</span>.<span style="color:#e06c75">Image</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This way, if the user updated the content only, COALESCE will detect that the image argument is null and thus use the already stored value, leaving the field as it was prior to the update.</p>
+<h2 id="batch-inserts">Batch inserts</h2>
+<p>Inserting multiple records at once is typically an expensive operation and that&rsquo;s why we need an optimal solution for it.</p>
+<h3 id="bulk-imports">Bulk imports</h3>
+<p>The <code>COPY</code> command is optimized for loading large numbers of rows; it is less flexible than <code>INSERT</code>, but incurs significantly less overhead for large data loads.</p>
+<p>Since it&rsquo;s a single command, there is no need to disable autocommit if you use this method to populate a table. Also, it stops operation at the first error.</p>
+<p><code>COPY FROM</code> will invoke any triggers and check constraints on the destination table. However, it will not invoke rules.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#c678dd">func</span> <span style="color:#61afef;font-weight:bold">bulkImports</span>(<span style="color:#e06c75">db</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">sql</span>.<span style="color:#e06c75">DB</span>, <span style="color:#e06c75">posts</span> []<span style="color:#e06c75">Post</span>) <span style="color:#e5c07b">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">stmt</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">Prepare</span>(<span style="color:#98c379">&#34;COPY posts (id, title, content) FROM STDIN&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">return</span> <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">defer</span> <span style="color:#e06c75">stmt</span>.<span style="color:#61afef;font-weight:bold">Close</span>()
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">for</span> <span style="color:#e06c75">_</span>, <span style="color:#e06c75">post</span> <span style="color:#56b6c2">:=</span> <span style="color:#c678dd">range</span> <span style="color:#e06c75">posts</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#e06c75">_</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">stmt</span>.<span style="color:#61afef;font-weight:bold">ExecContext</span>(<span style="color:#e06c75">ctx</span>, <span style="color:#e06c75">post</span>.<span style="color:#e06c75">ID</span>, <span style="color:#e06c75">post</span>.<span style="color:#e06c75">Title</span>, <span style="color:#e06c75">post</span>.<span style="color:#e06c75">Content</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#c678dd">return</span> <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#7f848e">// Flush buffered data</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">_</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">stmt</span>.<span style="color:#61afef;font-weight:bold">ExecContext</span>(<span style="color:#e06c75">ctx</span>); <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">return</span> <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#e5c07b">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="query-building">Query building</h3>
+<p>Another way to insert multiple records in one call is to build a query containing a set of arguments for each of them.</p>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#98c379">&#34;INSERT INTO posts (id, title, content, image) VALUES ($1, $2, $3), ($4, $5, $6)&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p>Take a look at the implementation <a href="https://stackoverflow.com/questions/12486436/how-do-i-batch-sql-statements-with-package-database-sql">here</a>.</p>
+<p>Note that the maximum number of arguments supported by <code>VALUES</code> is 1000.</p></blockquote>
+<h2 id="pagination">Pagination</h2>
+<p>Pagination is the process of dividing a document into discrete pages.</p>
+<p>In programming, we provide our clients the possibility to paginate the list of results by using a cursor.</p>
+<p>A cursor could be thought as a flag that divides already seen records and not yet seen ones.</p>
+<p>On each request, we return a new cursor (which may be an id or an encoded string) so the user can ask for more records without getting repeated ones.</p>
+<p>Here are two common ways of implementing pagination in SQL that are safe from injection:</p>
+<h3 id="using-uuids">Using UUIDs</h3>
+<p>We select the posts that were created before the date passed, in case the date matches with the creation timestamp, the ID is compared.</p>
+<blockquote>
+<p>In this case, the cursor is generally an encoded string that contains both the ID and the creation timestamp.</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#7f848e">// Requires the table to have a field with a timestamp of the value creation</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">id</span> <span style="color:#56b6c2">:=</span> <span style="color:#98c379">&#34;3c0217ac-503f-45dc-b150-0b1618155d3d&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">createdAt</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">time</span>.<span style="color:#61afef;font-weight:bold">Now</span>()
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">q</span> <span style="color:#56b6c2">:=</span> <span style="color:#98c379">`SELECT * FROM posts WHERE 
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">created_at &lt; $1 OR (created_at = $1 AND id &lt; $2) 
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">ORDER BY created_at DESC, id DESC LIMIT 5`</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">Query</span>(<span style="color:#e06c75">q</span>, <span style="color:#e06c75">createdAt</span>, <span style="color:#e06c75">id</span>)
+</span></span></code></pre></div><h3 id="using-lexicographically-sortable-ids">Using lexicographically sortable IDs</h3>
+<p>Since the IDs are already sorted there is no need to compare the creation date, the ID is the cursor itself.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#e06c75">id</span> <span style="color:#56b6c2">:=</span> <span style="color:#98c379">&#34;01FMA344NAGPSKF4TNAXMC06KS&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">Query</span>(<span style="color:#98c379">&#34;SELECT * FROM posts WHERE id &lt; $1 ORDER BY id DESC LIMIT 5&#34;</span>, <span style="color:#e06c75">id</span>)
+</span></span></code></pre></div><h2 id="prepared-statements">Prepared statements</h2>
+<p>When we make a query using <a href="https://pkg.go.dev/database/sql#DB.Query"><code>db.Query()</code></a>, a prepared statement is built underneath to run it, but it&rsquo;s used only once.</p>
+<p>If we were to execute the same query multiple times, we would be wasting resources as the prepared statement would be compiled on each iteration.</p>
+<p>In order to fix this, we can use <em>prepared statements</em>, they allow us to compile the query with parameterized arguments separetely and then use that statement <em>n</em> times.</p>
+<p>Another advantage is that multiple queries or executions may be run concurrently from the returned statement.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#e06c75">stmt</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">Prepare</span>(<span style="color:#98c379">&#34;SELECT * FROM posts WHERE id=$1&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">if</span> <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// Remember to always close the statement when </span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e">// it&#39;s no longer needed to free up resources</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">defer</span> <span style="color:#e06c75">stmt</span>.<span style="color:#61afef;font-weight:bold">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">for</span> <span style="color:#e06c75">_</span>, <span style="color:#e06c75">id</span> <span style="color:#56b6c2">:=</span> <span style="color:#c678dd">range</span> <span style="color:#e06c75">postIDs</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">if</span> <span style="color:#e06c75">_</span>, <span style="color:#e06c75">err</span> <span style="color:#56b6c2">:=</span> <span style="color:#e06c75">stmt</span>.<span style="color:#61afef;font-weight:bold">QueryRowContext</span>(<span style="color:#e06c75">ctx</span>, <span style="color:#e06c75">id</span>); <span style="color:#e06c75">err</span> <span style="color:#56b6c2">!=</span> <span style="color:#e5c07b">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#c678dd">return</span> <span style="color:#e06c75">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#7f848e">// Scan post</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="stored-procedures">Stored procedures</h2>
+<p>Stored procedures are user-defined functions that can be stored in the database for later reuse, they can contain parameters but can&rsquo;t return anything.</p>
+<p>As simple as that, let&rsquo;s implement a stored procedure for updating a post&rsquo;s likes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#7f848e">// Check if the user already liked the post, if yes, remove the like, if not, add it.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">q</span> <span style="color:#56b6c2">:=</span> <span style="color:#98c379">`CREATE OR REPLACE PROCEDURE likePost(postID text, userID text) AS $$
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	BEGIN
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">		IF EXISTS (SELECT 1 FROM post_likes WHERE post_id=postID AND user_id=userID) THEN
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	   		DELETE FROM post_likes WHERE post_id=postID AND user_id=userID;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	   	ELSE
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	   		INSERT INTO post_likes (post_id, user_id) VALUES (postID, userID);
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	   	END IF;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">	END 
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">$$ LANGUAGE plpgsql`</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">ExecContext</span>(<span style="color:#e06c75">ctx</span>, <span style="color:#e06c75">q</span>)
+</span></span></code></pre></div><p>We can execute it doing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#e06c75">db</span>.<span style="color:#61afef;font-weight:bold">ExecContext</span>(<span style="color:#e06c75">ctx</span>, <span style="color:#98c379">&#34;CALL likePost($1, $2)&#34;</span>, <span style="color:#e06c75">postID</span>, <span style="color:#e06c75">userID</span>)
+</span></span></code></pre></div><h2 id="parting-words">Parting words</h2>
+<p>I hope you found this post useful, in the next one we will be taking a look at transactions (propagation using context and isolation levels), dynamic scanning, full text search, recursive queries and much more.</p>
+
+          </article>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div id="stickySideBar" class="sticky-sidebar">
+          
+          <aside class="toc">
+              <h5>
+                Table Of Contents
+              </h5>
+              <div class="toc-content">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#connection-tuning">Connection tuning</a></li>
+    <li><a href="#scanning-null-values">Scanning null values</a>
+      <ul>
+        <li><a href="#coalesce">COALESCE</a></li>
+        <li><a href="#standard-library-types">Standard library types</a></li>
+        <li><a href="#pointers">Pointers</a></li>
+      </ul>
+    </li>
+    <li><a href="#storing-slices">Storing slices</a></li>
+    <li><a href="#update-only-what-changes">Update only what changes</a></li>
+    <li><a href="#batch-inserts">Batch inserts</a>
+      <ul>
+        <li><a href="#bulk-imports">Bulk imports</a></li>
+        <li><a href="#query-building">Query building</a></li>
+      </ul>
+    </li>
+    <li><a href="#pagination">Pagination</a>
+      <ul>
+        <li><a href="#using-uuids">Using UUIDs</a></li>
+        <li><a href="#using-lexicographically-sortable-ids">Using lexicographically sortable IDs</a></li>
+      </ul>
+    </li>
+    <li><a href="#prepared-statements">Prepared statements</a></li>
+    <li><a href="#stored-procedures">Stored procedures</a></li>
+    <li><a href="#parting-words">Parting words</a></li>
+  </ul>
+</nav>
+              </div>
+          </aside>
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        
+      </div>
+    </div>
+  </div>
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  
+  let stickySideBarElem = document.getElementById("stickySideBar");
+  let stickyNavBar =  true ;
+  if(stickyNavBar) {
+    let headerElem = document.getElementById("profileHeader");
+    let headerHeight = headerElem.offsetHeight + 15;
+    stickySideBarElem.style.top = headerHeight + "px";
+  } else {
+    stickySideBarElem.style.top = "50px";
+  }
+</script>
+
+
+
+
+  </div><footer>
+	
+
+	
+
+	<div class="text-center p-3">
+
+	
+	<span class="pr-1">
+		<a href="https://github.com/GGP1" aria-label="github"><svg
+				xmlns="http://www.w3.org/2000/svg" width="2.1em" height="2.1em" viewBox="0 0 1792 1792">
+				<path id="footer-socialNetworks-github-svg-path"
+					d="M522 1352q-8 9-20-3-13-11-4-19 8-9 20 3 12 11 4 19zm-42-61q9 12 0 19-8 6-17-7t0-18q9-7 17 6zm-61-60q-5 7-13 2-10-5-7-12 3-5 13-2 10 5 7 12zm31 34q-6 7-16-3-9-11-2-16 6-6 16 3 9 11 2 16zm129 112q-4 12-19 6-17-4-13-15t19-7q16 5 13 16zm63 5q0 11-16 11-17 2-17-11 0-11 16-11 17-2 17 11zm58-10q2 10-14 14t-18-8 14-15q16-2 18 9zm964-956v960q0 119-84.5 203.5t-203.5 84.5h-224q-16 0-24.5-1t-19.5-5-16-14.5-5-27.5v-239q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-121-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-86-13.5q-44 113-7 204-79 85-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-40 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 103t.5 68q0 22-11 33.5t-22 13-33 1.5h-224q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z" />
+			</svg>
+		</a>
+	</span>
+	
+
+	
+	<span class="px-1">
+		<a href="https://linkedin.com/gastonpalomeque" aria-label="linkedin">
+			<svg xmlns="http://www.w3.org/2000/svg" width='1.8em' height='1.8em' fill="#fff" aria-label="LinkedIn"
+				viewBox="0 0 512 512">
+				<rect width="512" height="512" fill="#0077b5" rx="15%" />
+				<circle cx="142" cy="138" r="37" />
+				<path stroke="#fff" stroke-width="66" d="M244 194v198M142 194v198" />
+				<path d="M276 282c0-20 13-40 36-40 24 0 33 18 33 45v105h66V279c0-61-32-89-76-89-34 0-51 19-59 32" />
+			</svg>
+		</a>
+	</span>
+	
+
+	
+	<a href="https://stackoverflow.com/users/12574067/ggp" aria-label="stackoverflow">
+		<svg viewBox="-24 0 304 304" width="1.8em" height="1.8em" version="1.1" xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#000000">
+			<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+			<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+			<g id="SVGRepo_iconCarrier">
+				<g>
+					<polygon fill="#BCBBBB"
+						points="216.329708 276.187929 216.329708 194.976776 243.28341 194.976776 243.28341 303.14163 0 303.14163 0 194.976776 26.9537015 194.976776 26.9537015 276.187929">
+					</polygon>
+					<path
+						d="M56.7077876,187.275718 L189.025959,214.929516 L194.626728,188.325863 L62.3085568,160.672065 L56.7077876,187.275718 L56.7077876,187.275718 Z M74.2101912,124.267065 L196.727016,181.324901 L207.928555,156.821536 L85.4117295,99.4136524 L74.2101912,124.267065 Z M108.164854,64.0587971 L212.129132,150.520671 L229.281487,129.867835 L125.31721,43.4059609 L108.164854,64.0587971 L108.164854,64.0587971 Z M175.374084,0 L153.671104,16.1022113 L234.18216,124.617114 L255.88514,108.514902 L175.374084,0 Z M53.9074031,248.884179 L189.025959,248.884179 L189.025959,221.930478 L53.9074031,221.930478 L53.9074031,248.884179 Z"
+						fill="#F48023"> </path>
+				</g>
+			</g>
+		</svg>
+	</a>
+	
+
+	
+
+	<div class="pt-3">
+		Gastón Palomeque
+	</div>
+</div>
+</footer>
+<script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+</script>
+
+
+    <script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="search-content" class="py-2">
+    <div class="container" id="search-results"></div>
+  </section>
+</body>
+
+</html>
