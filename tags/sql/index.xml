@@ -1,26 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>SQL on Gastón Palomeque</title>
-    <link>https://ggp1.github.io/tags/sql/</link>
-    <description>Recent content in SQL on Gastón Palomeque</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 13 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ggp1.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Mastering SQL with Go - Part 2</title>
-      <link>https://ggp1.github.io/posts/mastering_sql_with_go_p2/</link>
-      <pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://ggp1.github.io/posts/mastering_sql_with_go_p2/</guid>
-      <description>&lt;p&gt;This is the part 2 of a series covering &lt;strong&gt;sql&lt;/strong&gt; and &lt;strong&gt;Go&lt;/strong&gt;, this time, we will cover how to work with SQL transactions context and isolation levels, results dynamic scanning, full text search and recursive queries as well as using multiple result sets to do many queries in a single roundtrip.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;To go to part one, click &lt;a href=&#34;../mastering_sql_with_go_p1&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;transactions&#34;&gt;Transactions&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start with transactions, why are they necessary?&lt;/p&gt;&#xA;&lt;p&gt;A transaction is a way for an application to group several reads and writes together into a logical unit.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Mastering SQL with Go - Part 1</title>
-      <link>https://ggp1.github.io/posts/mastering_sql_with_go_p1/</link>
-      <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://ggp1.github.io/posts/mastering_sql_with_go_p1/</guid>
-      <description>&lt;p&gt;I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.&lt;/p&gt;&#xA;&lt;p&gt;This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package &lt;a href=&#34;https://github.com/golang/go/tree/master/src/database/sql&#34;&gt;&lt;code&gt;database/sql&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SQL on Gastón Palomeque</title><link>https://ggp1.github.io/tags/sql/</link><description>Recent content in SQL on Gastón Palomeque</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 13 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ggp1.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml"/><item><title>Mastering SQL with Go - Part 2</title><link>https://ggp1.github.io/posts/mastering_sql_with_go_p2/</link><pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate><guid>https://ggp1.github.io/posts/mastering_sql_with_go_p2/</guid><description>&lt;p>This is the part 2 of a series covering &lt;strong>sql&lt;/strong> and &lt;strong>Go&lt;/strong>, this time, we will cover how to work with SQL transactions context and isolation levels, results dynamic scanning, full text search and recursive queries as well as using multiple result sets to do many queries in a single roundtrip.&lt;/p>
+&lt;blockquote>
+&lt;p>To go to part one, click &lt;a href="../mastering_sql_with_go_p1">here&lt;/a>.&lt;/p>&lt;/blockquote>
+&lt;h2 id="transactions">Transactions&lt;/h2>
+&lt;p>Let&amp;rsquo;s start with transactions, why are they necessary?&lt;/p>
+&lt;p>A transaction is a way for an application to group several reads and writes together into a logical unit.&lt;/p></description></item><item><title>Mastering SQL with Go - Part 1</title><link>https://ggp1.github.io/posts/mastering_sql_with_go_p1/</link><pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate><guid>https://ggp1.github.io/posts/mastering_sql_with_go_p1/</guid><description>&lt;p>I found myself using SQL a lot in one of my projects and I have learnt many things while trying to solve the problems I encountered.&lt;/p>
+&lt;p>This post is the part one of a series where I will try to show how to manage data in a relational database using SQL (Postgre syntax), Go and its standard library package &lt;a href="https://github.com/golang/go/tree/master/src/database/sql">&lt;code>database/sql&lt;/code>&lt;/a>.&lt;/p>
+&lt;p>Explaining absolutely everything would require an entire book so I will skip the subjects that most articles already cover (connection establishment, foreign keys, parameterized arguments, etc).&lt;/p></description></item></channel></rss>
