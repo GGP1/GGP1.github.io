@@ -290,7 +290,9 @@ params:
         badges:
           - "React"
           - "Typescript"
+          - "Ollama"
           - "Langchain"
+          - "RAG"
         links:
           - icon: fab fa-github
             url: https://www.github.com/GGP1/groove
