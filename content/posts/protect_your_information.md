@@ -2,8 +2,6 @@
 title: "Protect your information"
 date: 2022-02-20
 draft: false
-# categories:
-#  - cybersecurity
 ShowReadingTime: false
 ShowBreadCrumbs: false
 ShowPostNavLinks: true
