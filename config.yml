@@ -1,4 +1,4 @@
-baseURL: "https://ggp1.github.io/"
+baseURL: "https://gastonpalomeque.com"
 title: Gastón Palomeque
 theme: profile
 pagination:
@@ -157,12 +157,15 @@ params:
         - GCP
         - Elasticsearch
         - Typescript
-        - PostgreSQL
+        - SQL
         - Redis
         - Prometheus
         - Nginx
         - Rust
         - Bash
+        - Ollama
+        - Langchain
+        - RAG
 
   # Experience
   experience:
@@ -279,7 +282,7 @@ params:
             url: https://www.github.com/GGP1/adak
 
       - title: Groove
-        content: Event planning and discovery mobile application.
+        content: Event planning and discovery mobile application featuring an integrated AI assitant.
         image: ""
         # featured:
         #   name: Demo
@@ -287,11 +290,12 @@ params:
         badges:
           - "React"
           - "Typescript"
+          - "Langchain"
         links:
           - icon: fab fa-github
             url: https://www.github.com/GGP1/groove
       - title: Btcs
-        content: Simplified Bitcoin implementation featuring a simulated peer-to-peer network based on Docker.
+        content: Simplified Bitcoin implementation with a simulated peer-to-peer network based on Docker.
         image: ""
         # featured:
         #   name: Demo
