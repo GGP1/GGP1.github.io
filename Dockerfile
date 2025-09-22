@@ -1,4 +1,4 @@
-FROM klakegg/hugo:0.83.1-alpine as hugo
+FROM klakegg/hugo:0.111.3-alpine AS hugo
 
 ENV HUGO_ENV="production hugo --gc --minify"
 
@@ -10,7 +10,7 @@ RUN hugo --config config.yml
 
 # ----------
 
-FROM nginx:1.21.0-alpine
+FROM nginx:1.29.0-alpine
 
 COPY --from=hugo /blog/public /usr/share/nginx/html
 
