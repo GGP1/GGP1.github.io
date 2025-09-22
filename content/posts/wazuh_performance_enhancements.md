@@ -16,9 +16,11 @@ tags:
   - SQL
 ---
 
-In this post, we will go through real-world performance optimizations introduced to Wazuh's server 4.13.0 version, achieving significant reductions in time and resources consumption up to **95%**! 
+In this post, we will go through real-world performance optimizations introduced to the Wazuh server [4.13.0 version](https://github.com/wazuh/wazuh/releases/tag/v4.13.0), achieving significant reductions in time and resources consumption up to **95%**!
 
-Let's dive into the issues and how we fixed them.
+We will explore different techniques such as connection pooling, caching, SQL query improvements, reducing time complexity, better configuration values and more.
+
+Let's dive into each one of the issues and how we fixed them.
 
 ### Identifying bottlenecks
 
