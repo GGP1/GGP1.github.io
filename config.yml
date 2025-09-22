@@ -118,6 +118,12 @@ params:
       newPage: false
     socialLinks:
       fontAwesomeIcons:
+        # - icon: fab fa-github
+        #   url: https://github.com/GGP1
+        # - icon: fab fa-linkedin
+        #   url: https://www.linkedin.com/in/gastonpalomeque/
+        # - icon: fab fa-stack-overflow
+        #   url: https://stackoverflow.com/users/12574067/ggp
       customIcons:
         - icon: /images/github.png
           url: https://github.com/GGP1
@@ -135,16 +141,15 @@ params:
     image: ""
     content: |-
       I'm an autodidact Software Engineer passionate about computer science and economics.
-      
-      It all started with a simple interest in understanding how computers work, and before I knew it, I was spending hours each day learning new skills and putting them into practice. The journey hasn't stopped there; every day brings something new to explore, and I'm continuously extending my knowledge.
+
+      My journey began with curiosity about how computers work, leading me to spend countless hours learning and experimenting. This pursuit of knowledge continues to evolve every day.
 
       When I'm not coding, you'll often find me staying active through swimming, running, or playing football or tennis. These activities keep my mind sharp and 
       help me approach challenges with a fresh perspective.
 
-      I'm also deeply interested in economics, particularly in the fundamentals of money, macroeconomics, and human capital allocation behavior. This passion
-      informs my decision-making and helps me navigate an ever-changing world.
+      I'm also deeply interested in economics, particularly the fundamentals of money, macroeconomics, and praxeology. This curiosity shapes how I approach decision-making in an ever-changing world.
 
-      Lately, I've been diving deep into the exciting field of artificial intelligence and machine learning. Specifically, I'm exploring techniques to enhance open-source large language models. It's a rapidly evolving field, and I'm eager to share what I learn along the way.
+      Lately, I've been diving deep into the exciting field of AI, exploring techniques to enhance open-source LLMs. It's a rapidly evolving field, and I'm eager to share what I learn along the way.
     skills:
       enable: true
       title: "To conclude, here are some of the technologies I'm experienced with:"
@@ -166,6 +171,7 @@ params:
         - Ollama
         - Langchain
         - RAG
+        - MCP
 
   # Experience
   experience:
@@ -185,16 +191,16 @@ params:
         content: |
           Currently working as a Senior Software Engineer in the Server team, maintaining the APIs, cluster, external integrations and cloud services.
 
-          I am leading the development of the server and its communication with the agents and indexer nodes for the upcoming 5.0 release.
+          I am leading the development of the server and its communication with the agents and indexer nodes for the upcoming 6.0 release.
 
       - job: "Software Developer"
         company: "Avature"
-        companyUrl: "https://avature.com"
+        companyUrl: "https://avature.net"
         date: "Oct 2021 - Mar 2023"
         featuredLink:
           enable: true
           name: "Visit the site"
-          url: "https://avature.com"
+          url: "https://avature.net"
         info:
           enable: false
         content: |
@@ -222,28 +228,6 @@ params:
           Extracurricular Activities
             - Lorem ipsum dolor sit amet consectetur adipisicing elit.
             - Tempora esse, eaque delectus nulla quo doloribus itaque expedita alias natus optio totam maxime nihil excepturi velit a animi laborum hic similique.
-
-  # Achievements
-  achievements:
-    enable: false
-    # title: "Custom Name"
-    items:
-      - title: Google kickstart runner
-        content: I solved all problems with optimal solution.
-        url: https://example.com
-        image: /images/achievement.jpg
-      - title: Facebook Hackathon Winner
-        content: Developed a product using Artificial Intelligence.
-        image: /images/achievement.jpg
-      - title: Hugo Profile
-        content: Developed a theme and getting 1K+ downloads per month.
-        url: "https://github.com/gurusabarish/hugo-profile"
-        image: /images/achievement.jpg
-      - title: Microsoft Imagine Runner
-        content: We are developed a product which can help others.
-      - title: Google Summer of Code
-        content: Contributed to a open source project.
-        url: https://example.com
 
   # projects
   projects:
@@ -364,7 +348,7 @@ params:
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/GGP1
-      linkedin: https://linkedin.com/gastonpalomeque
+      linkedin: https://linkedin.com/in/gastonpalomeque
       stackoverflow: https://stackoverflow.com/users/12574067/ggp
 
   # List pages like blogs and posts
@@ -380,7 +364,7 @@ params:
     scrollprogress:
       enable: false
     tags:
-      openInNewTab: true
+      openInNewTab: false
 
   # For translations
   terms:
