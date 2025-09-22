@@ -183,11 +183,12 @@
     /* box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.2); */
     max-width: 100%;
 }
+
 @media (min-width: 768px) and (max-width: 1024px) {
     #single aside.aboutImg img {
         width: 60%;
     }
- }
+}
 
 
 #single aside.aboutImg h5 {
