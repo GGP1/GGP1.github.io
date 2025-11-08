@@ -159,6 +159,15 @@ header .navbar.animate {
     width: 1.3em;
 }
 
+/* Make GitHub icon visible in light mode, keep it normal in dark mode */
+.light #hero a.btn.social-icon img[src*="github"] {
+    filter: invert(1);
+}
+
+.dark #hero a.btn.social-icon img[src*="github"] {
+    filter: none;
+}
+
 #hero a.btn.social-icon:hover {
     opacity: 0.8;
 }
