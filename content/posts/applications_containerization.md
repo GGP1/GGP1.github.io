@@ -1,10 +1,9 @@
 ---
 title: "Applications containerization"
-description: ""
+description: "History about and how to containerize applications"
 date: 2023-10-20
 draft: false
 image: "/images/containers.jpg"
-description: "History about and how to containerize applications"
 tags:
   - Go
   - Docker
