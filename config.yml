@@ -176,12 +176,29 @@ params:
   # Experience
   experience:
     enable: true
-    # title: "Custom Name"
     items:
+      - job: "Backend Engineer"
+        company: "Welltech"
+        companyUrl: "https://welltech.com"
+        date: "Nov 2025 - Present"
+        featuredLink:
+          enable: true
+          name: "Website"
+          url: "https://welltech.com"
+        info:
+          enable: false
+        content: |
+          User Profile and Privacy team member.
+
+          - Building and maintaining robust APIs, enabling personalized fitness tracking, meal plans, and holistic wellness features for multiple fitness products.
+          - Integrating and leveraging AWS services (e.g., Lambda, API Gateway, SQS, S3) to build modern, serverless solutions.
+          - Contributing to system architecture by collaborating on designing reliable, maintainable, and scalable systems to support millions of users worldwide.
+          - Prioritizing sustainable quality by writing clean, maintainable, and scalable code, focusing on continuous improvement and long-term reliability.
+          - Collaborating cross-functionally with product managers, designers, data experts, and content teams, while effectively working with teammates and stakeholders to achieve shared goals and foster constructive, respectful discussions.
       - job: "Senior Software Engineer"
         company: "Wazuh"
         companyUrl: "https://wazuh.com"
-        date: "Mar 2023 - present"
+        date: "Mar 2023 - Oct 2025"
         featuredLink:
           enable: true
           name: "Proof of work"
@@ -189,17 +206,19 @@ params:
         info:
           enable: false
         content: |
-          Currently working as a Senior Software Engineer in the Server team, maintaining the APIs, cluster, external integrations and cloud services.
+          Worked on the API, cluster, external integrations and cloud services.
 
-          I am leading the development of the server and its communication with the agents and indexer nodes for the upcoming 6.0 release.
-
-      - job: "Software Developer"
+          - Improved the server authentication efficiency and scalability, reducing the mean latency in high load environments by 92%, from 10 to 0.8 seconds.
+          - Proposed and implemented a more secure protocol for the cluster nodes communications.
+          - Implemented the new management of agent groups and the new commands distribution.
+          - Engineered the Agent Communications API used by over 1 million active agents globally.
+      - job: "Software Engineer"
         company: "Avature"
         companyUrl: "https://avature.net"
-        date: "Oct 2021 - Mar 2023"
+        date: "Oct 2021 - Feb 2023"
         featuredLink:
           enable: true
-          name: "Visit the site"
+          name: "Website"
           url: "https://avature.net"
         info:
           enable: false
